@@ -23,5 +23,7 @@ Mã trong app dùng giao diện giống Firestore: doc/collection/onSnapshot/set
 
 ## Lưu ý
 - Không commit symlink hay node_modules. Chữ hoa/thường trong URL Pages theo tên repo.
-- Chưa có Firebase thì app ở chế độ một máy: lời mời chỉ có tác dụng trên cùng thiết bị.
+- Firebase: dự án `cung-ranh` (Spark, Firestore asia-southeast1, đăng nhập ẩn danh bật, luật trong `firestore.rules` đã publish). Cấu hình web nằm trong `config.js`. Sửa luật: Firebase Console > Firestore > Rules.
+- Nếu `config.js` là null thì app ở chế độ một máy: lời mời chỉ có tác dụng trên cùng thiết bị.
+- Nhóm thử nghiệm `av7ggtwg77` (mã GFYPMD) do tài khoản Test Một tạo lúc kiểm tra Bản 03; xóa được trong Firebase Console > Firestore Data.
 - Trên iPhone, app cài ra không dùng chung bộ nhớ với Safari: cần đăng nhập thật (Google/email) nếu muốn nhóm đi theo tài khoản.
