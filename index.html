@@ -282,13 +282,13 @@ p{margin:0}
 <body>
 <div class="app">
   <div class="top">
-    <button id="brand" class="brand" type="button" aria-label="Về trang chủ">Những người <i>quá rảnh</i><span class="pill">Bản 04</span></button>
+    <button id="brand" class="brand" type="button" aria-label="Về trang chủ">Những người <i>quá rảnh</i><span class="pill">Bản 05</span></button>
     <button id="me" class="me" type="button" hidden></button>
   </div>
   <div id="banner" class="banner" hidden></div>
   <div id="view"></div>
   <footer class="ver"><button id="install" class="linkbtn" type="button">Cài app lên điện thoại</button>
-  <p id="verline">Những người quá rảnh · Bản 04 · 03/11/2026 · Người tạo: Hoàng Trung Đức</p></footer>
+  <p id="verline">Những người quá rảnh · Bản 05 · 03/11/2026 · Người tạo: Hoàng Trung Đức</p></footer>
 </div>
 <div id="toast" class="toast" role="status" hidden><span>Đã có bản mới.</span> <button id="toast-reload" class="btn sm" type="button">Tải lại</button></div>
 
@@ -797,7 +797,9 @@ function viewGroup(gid){
   var list=responded(gid),N=list.length,waiting=ms.filter(function(m){return !submitted(m)});
   var box=h("div",{class:"stack"});
 
-  box.append(h("button",{class:"btn sm back",type:"button","data-k":"back",onclick:function(){navigate({view:"home"})},"aria-label":"Quay lại danh sách nhóm của tôi",text:"← Nhóm của tôi"}));
+  box.append(h("div",{class:"row topbar"},h("button",{class:"btn sm back",type:"button","data-k":"back",onclick:function(){navigate({view:"home"})},"aria-label":"Quay lại danh sách nhóm của tôi",text:"← Nhóm của tôi"}),
+    h("span",{class:"grow"}),
+    isMember?h("button",{class:"btn sm danger",type:"button","data-k":"leave-top",disabled:!canWrite(),onclick:function(){sheetLeave(gid,owner)},text:owner?"Xóa nhóm":"Rời nhóm"}):null));
   box.append(h("div",{class:"card"},h("div",{class:"ghead"},tile(info.name,info.color,true),
     h("div",{class:"info"},h("h1",{text:info.name}),h("p",{class:"sub",text:"Lập bởi "+info.ownerName+" · "+ms.length+" thành viên"}),avStack(ms,6)),
     h("button",{class:"btn primary",type:"button","data-k":"invite",onclick:function(){sheetInvite(gid)},text:"Mời bạn"}))));
@@ -1053,6 +1055,15 @@ function copyTo(text,btn,hostEl){
 }
 function field(id,label,input){return h("div",{class:"field"},h("label",{for:id,text:label}),input)}
 
+function sheetLeave(gid,owner){
+  var info=G(gid).info||{name:""};
+  openSheet(owner?"Xóa nhóm này?":"Rời nhóm này?",function(body,api){
+    var go=h("button",{class:"btn danger",type:"button","data-k":"leave-ok",text:owner?"Xóa nhóm “"+info.name+"”":"Rời nhóm",onclick:function(){go.disabled=true;go.textContent="Đang xử lý…";api.close();owner?deleteGroup(gid):leaveGroup(gid)}});
+    body.append(h("p",{text:owner?"Nhóm “"+info.name+"” sẽ bị xóa cùng lịch, kèo và link mời của nhóm. Mọi thành viên sẽ không còn thấy nhóm. Không thể khôi phục.":"Lịch bạn đã điền trong nhóm “"+info.name+"” sẽ bị xóa. Bạn có thể vào lại bằng link mời."}),
+      h("div",{class:"row"},go,h("button",{class:"btn",type:"button",text:"Không, giữ lại",onclick:api.close})));
+    body.lastChild.style.marginTop="16px";
+  });
+}
 function isStandalone(){return (window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true}
 function sheetPlatform(gid){
   if(gid&&isStandalone())return;
