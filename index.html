@@ -86,6 +86,7 @@ p{margin:0}
 .avs .av:first-child{margin-left:0}
 .avs .more{background:var(--surface-2);color:var(--ink)}
 .tile{flex:none;display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:14px;font:800 24px/1 var(--font-display);color:var(--a-ink);background:var(--a0)}
+.tile.ph{background-size:cover;background-position:center;font-size:0}
 .tile.l{width:60px;height:60px;font-size:28px}
 .c0{background:var(--a0)}.c1{background:var(--a1)}.c2{background:var(--a2)}.c3{background:var(--a3)}.c4{background:var(--a4)}.c5{background:var(--a5)}.c6{background:var(--a6)}.c7{background:var(--a7)}.c8{background:var(--a8)}.c9{background:var(--a9)}
 .av.em{font-size:15px;line-height:1}
@@ -282,13 +283,13 @@ p{margin:0}
 <body>
 <div class="app">
   <div class="top">
-    <button id="brand" class="brand" type="button" aria-label="Về trang chủ">Những người <i>quá rảnh</i><span class="pill">Bản 05</span></button>
+    <button id="brand" class="brand" type="button" aria-label="Về trang chủ">Những người <i>quá rảnh</i><span class="pill">Bản 06</span></button>
     <button id="me" class="me" type="button" hidden></button>
   </div>
   <div id="banner" class="banner" hidden></div>
   <div id="view"></div>
   <footer class="ver"><button id="install" class="linkbtn" type="button">Cài app lên điện thoại</button>
-  <p id="verline">Những người quá rảnh · Bản 05 · 03/11/2026 · Người tạo: Hoàng Trung Đức</p></footer>
+  <p id="verline">Những người quá rảnh · Bản 06 · 03/11/2026 · Người tạo: Hoàng Trung Đức</p></footer>
 </div>
 <div id="toast" class="toast" role="status" hidden><span>Đã có bản mới.</span> <button id="toast-reload" class="btn sm" type="button">Tải lại</button></div>
 
@@ -418,7 +419,10 @@ function avStack(members,max){
   var list=members.slice(0,max),extra=members.length-list.length;
   return h("span",{class:"avs","aria-hidden":"true"},list.map(function(m){return avM(m)}),extra>0?h("span",{class:"av more",text:"+"+extra}):null);
 }
-function tile(name,color,big){return h("span",{class:"tile"+(big?" l":"")+" c"+(color|0),"aria-hidden":"true",text:initial(name)})}
+function okPhoto(p){return typeof p==="string"&&p.indexOf("data:image/jpeg;base64,")===0&&p.length<400000}
+function tile(name,color,big,photo){
+  if(okPhoto(photo)){var t=h("span",{class:"tile ph"+(big?" l":"")+" c"+(color|0),"aria-hidden":"true"});t.style.backgroundImage="url("+photo+")";return t}
+  return h("span",{class:"tile"+(big?" l":"")+" c"+(color|0),"aria-hidden":"true",text:initial(name)})}
 function membersOf(gid){return Array.from(G(gid).members.values()).sort(function(a,b){
   if(a.role==="owner")return -1;if(b.role==="owner")return 1;return (a.joinedAt||0)-(b.joinedAt||0)})}
 function names(l){return l.map(function(p){return p.name}).join(", ")}
@@ -735,7 +739,7 @@ function groupCard(gid){
   var next=Array.from(g.events.values()).filter(function(e){return e.date&&parseIso(e.date)>=today0}).sort(function(a,b){return a.date.localeCompare(b.date)})[0];
   var st=next?"Kèo: "+lab(parseIso(next.date))+" · "+cdText(next.date):(ms.length&&waiting>0?"Còn "+waiting+" người chưa điền lịch":(list.length?"Mọi người đã điền lịch":""));
   return h("button",{class:"gcard",type:"button","data-k":"g-"+gid,onclick:function(){navigate({view:"group",gid:gid})}},
-    tile(info?info.name:"?",info?info.color:0),
+    tile(info?info.name:"?",info?info.color:0,false,info?info.photo:null),
     h("span",{class:"grow"},h("span",{class:"nm",text:info?info.name:"Đang tải…"}),
       h("div",{class:"sub",text:info?"Lập bởi "+info.ownerName+" · "+ms.length+" thành viên":""}),
       st?h("div",{class:"st",text:st}):null),
@@ -770,7 +774,7 @@ function viewInvite(){
   var info=g.info||{name:inv.name,ownerName:inv.ownerName,color:0};
   var card=h("div",{class:"card stack"},
     h("p",{class:"muted small",text:already?"Bạn đã ở trong nhóm này":"Lời mời vào nhóm"}),
-    h("div",{class:"ghead"},tile(info.name,info.color,true),
+    h("div",{class:"ghead"},tile(info.name,info.color,true,info.photo),
       h("div",{class:"info"},h("h1",{text:info.name}),h("p",{class:"sub",text:"Lập bởi "+info.ownerName+" · "+ms.length+" thành viên"}),avStack(ms,6))),
     ms.length?h("p",{class:"muted small",text:"Thành viên: "+names(ms)}):null,
     already?h("button",{class:"btn primary",type:"button","data-k":"open",onclick:function(){navigate({view:"group",gid:inv.gid})},text:"Mở nhóm"}):
@@ -799,8 +803,9 @@ function viewGroup(gid){
 
   box.append(h("div",{class:"row topbar"},h("button",{class:"btn sm back",type:"button","data-k":"back",onclick:function(){navigate({view:"home"})},"aria-label":"Quay lại danh sách nhóm của tôi",text:"← Nhóm của tôi"}),
     h("span",{class:"grow"}),
+    owner&&canWrite()?h("button",{class:"btn sm",type:"button","data-k":"edit-group",onclick:function(){sheetGroup(gid)},text:"Sửa nhóm"}):null,
     isMember?h("button",{class:"btn sm danger",type:"button","data-k":"leave-top",disabled:!canWrite(),onclick:function(){sheetLeave(gid,owner)},text:owner?"Xóa nhóm":"Rời nhóm"}):null));
-  box.append(h("div",{class:"card"},h("div",{class:"ghead"},tile(info.name,info.color,true),
+  box.append(h("div",{class:"card"},h("div",{class:"ghead"},tile(info.name,info.color,true,info.photo),
     h("div",{class:"info"},h("h1",{text:info.name}),h("p",{class:"sub",text:"Lập bởi "+info.ownerName+" · "+ms.length+" thành viên"}),avStack(ms,6)),
     h("button",{class:"btn primary",type:"button","data-k":"invite",onclick:function(){sheetInvite(gid)},text:"Mời bạn"}))));
 
@@ -1055,6 +1060,68 @@ function copyTo(text,btn,hostEl){
 }
 function field(id,label,input){return h("div",{class:"field"},h("label",{for:id,text:label}),input)}
 
+function resizePhoto(file){
+  return new Promise(function(res,rej){
+    var fr=new FileReader();
+    fr.onerror=function(){rej(new Error("read"))};
+    fr.onload=function(){
+      var im=new Image();
+      im.onerror=function(){rej(new Error("img"))};
+      im.onload=function(){
+        var N=256,c=document.createElement("canvas");c.width=N;c.height=N;
+        var x=c.getContext("2d"),m=Math.min(im.width,im.height),sx=(im.width-m)/2,sy=(im.height-m)/2;
+        x.fillStyle="#fff";x.fillRect(0,0,N,N);x.drawImage(im,sx,sy,m,m,0,0,N,N);
+        res(c.toDataURL("image/jpeg",0.8));
+      };
+      im.src=fr.result;
+    };
+    fr.readAsDataURL(file);
+  });
+}
+async function saveGroup(gid,patch){
+  var g=G(gid),info=g.info;
+  await S.db.doc("groups/"+gid).update(patch);
+  if(patch.name&&info&&info.code&&patch.name!==info.name){
+    try{
+      await S.db.doc("invites/"+info.code).delete();
+      await S.db.doc("invites/"+info.code).set({gid:gid,name:patch.name,ownerName:info.ownerName,createdAt:info.createdAt||Date.now()});
+    }catch(e){}
+  }
+}
+function sheetGroup(gid){
+  var info=G(gid).info;if(!info)return;
+  openSheet("Sửa nhóm",function(body,api){
+    var name=info.name,color=info.color|0,photo=okPhoto(info.photo)?info.photo:null,err=h("p",{class:"err",role:"status"});
+    var prev=h("div",{class:"row"}),sw=h("div",{class:"swatches wrap",role:"group","aria-label":"Màu nhóm"});
+    var nm=h("input",{class:"inp",id:"gname2",maxlength:"30",value:name,autocomplete:"off","aria-label":"Tên nhóm"});
+    nm.addEventListener("input",function(){name=nm.value;paintPrev()});
+    var file=h("input",{type:"file",accept:"image/*",hidden:true,"aria-label":"Chọn ảnh nhóm"});
+    var pick=h("button",{class:"btn",type:"button",text:"Chọn ảnh",onclick:function(){file.click()}});
+    var clear=h("button",{class:"btn",type:"button",text:"Bỏ ảnh",onclick:function(){photo=null;paint()}});
+    file.addEventListener("change",async function(){
+      var f=file.files&&file.files[0];if(!f)return;
+      err.textContent="";
+      try{photo=await resizePhoto(f);paint()}catch(e){err.textContent="Không đọc được ảnh này. Hãy thử ảnh khác (JPG hoặc PNG)."}
+    });
+    function paintPrev(){prev.replaceChildren(tile(name||"?",color,true,photo),h("div",null,h("strong",{text:name||"Tên nhóm"}),h("p",{class:"muted small",text:photo?"Ảnh được cắt vuông và thu nhỏ.":"Chưa có ảnh: nhóm hiện chữ cái đầu."})))}
+    function paint(){
+      paintPrev();clear.hidden=!photo;pick.textContent=photo?"Đổi ảnh":"Chọn ảnh";
+      sw.replaceChildren();
+      for(var i=0;i<6;i++)(function(i){sw.append(h("button",{type:"button",class:"sw c"+i,"aria-label":"Màu "+(i+1),"aria-pressed":color===i?"true":"false",onclick:function(){color=i;paint()}}))})(i);
+    }
+    paint();
+    var save=h("button",{class:"btn primary",type:"button",text:"Lưu",onclick:async function(){
+      var n=name.trim().replace(/\s+/g," ");
+      if(!n){err.textContent="Tên nhóm không được để trống.";return}
+      save.disabled=true;
+      var patch={name:n,color:color};patch.photo=photo||"";
+      try{await saveGroup(gid,patch);api.close()}catch(e){save.disabled=false;err.textContent="Chưa lưu được. Thử lại sau ít phút."}
+    }});
+    var row=h("div",{class:"row"},pick,clear,file);
+    body.append(prev,h("h3",{class:"sec",text:"Tên nhóm"}),nm,h("h3",{class:"sec",text:"Ảnh nhóm"}),row,h("h3",{class:"sec",text:"Màu khi không có ảnh"}),sw,h("div",{class:"row",style:null},save,h("button",{class:"btn",type:"button",text:"Hủy",onclick:api.close})),err);
+    body.children[body.children.length-2].style.marginTop="16px";
+  });
+}
 function sheetLeave(gid,owner){
   var info=G(gid).info||{name:""};
   openSheet(owner?"Xóa nhóm này?":"Rời nhóm này?",function(body,api){
