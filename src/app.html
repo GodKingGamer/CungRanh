@@ -682,7 +682,8 @@ function viewOnboard(){
     await saveProfile(n,S.profile.groups);
   }},
     h("div",{class:"field"},h("label",{for:"nick",text:"Mọi người nên gọi bạn là gì?"}),inp),
-    h("button",{class:"btn primary",type:"submit",text:"Bắt đầu"}),err);
+    h("button",{class:"btn primary",type:"submit",text:"Bắt đầu"}),err,
+    S.auth?h("button",{class:"btn link",type:"button","data-k":"have-acct",text:"Tôi đã có tài khoản (đồng bộ từ thiết bị khác)",onclick:function(){sheetSync("login")}}):null);
   return h("div",{class:"stack"},h("div",{class:"hero"},h("h1",{text:"Chào bạn!"}),
     h("p",{text:S.route.view==="invite"?"Bạn vừa nhận được một lời mời vào nhóm. Đặt tên hiển thị trước, rồi mình mở lời mời ra ngay.":"Mỗi nhóm bạn có một lịch chung. Mọi người đánh dấu ngày rảnh, app tự tìm ngày cả nhóm gặp được."})),form);
 }
@@ -1249,6 +1250,57 @@ function sheetEvent(gid,dateKey){
     }},field("evt","Tên kèo",t),field("evd","Ngày",d),field("evtm","Giờ",tm),field("evpl","Địa điểm",pl),go,err));
   });
 }
+function authMsg(e){
+  var c=e&&e.code||"";
+  if(c==="auth/email-already-in-use"||c==="auth/credential-already-in-use")return "Email này đã có tài khoản. Hãy chọn “Đăng nhập”.";
+  if(c==="auth/weak-password")return "Mật khẩu cần ít nhất 6 ký tự.";
+  if(c==="auth/invalid-email")return "Email chưa đúng định dạng.";
+  if(c==="auth/invalid-credential"||c==="auth/wrong-password"||c==="auth/user-not-found"||c==="auth/invalid-login-credentials")return "Email hoặc mật khẩu chưa đúng.";
+  if(c==="auth/too-many-requests")return "Thử quá nhiều lần. Đợi vài phút rồi thử lại.";
+  if(c==="auth/network-request-failed")return "Không có mạng. Kiểm tra kết nối rồi thử lại.";
+  if(c==="auth/operation-not-allowed")return "Chức năng đăng nhập bằng email chưa được bật trên máy chủ.";
+  return "Chưa thực hiện được. Thử lại sau ít phút.";
+}
+function sheetSync(mode0){
+  openSheet("Đồng bộ giữa các thiết bị",function(body,api){
+    if(!S.auth){body.append(h("p",{class:"muted",text:"Đồng bộ cần kết nối máy chủ. Bản này đang chạy ở chế độ một máy."}));return}
+    var u=S.auth.currentUser;
+    if(u&&!u.isAnonymous){
+      var out=h("button",{class:"btn danger",type:"button",text:"Đăng xuất khỏi thiết bị này",onclick:async function(){out.disabled=true;try{await S.auth.signOut()}catch(e){}location.reload()}});
+      var msg=h("p",{class:"muted small",role:"status"});
+      var rs=h("button",{class:"btn",type:"button",text:"Gửi email đặt lại mật khẩu",onclick:async function(){try{await S.auth.sendPasswordResetEmail(u.email);msg.textContent="Đã gửi email đặt lại mật khẩu tới "+u.email+"."}catch(e){msg.textContent=authMsg(e)}}});
+      var rowb=h("div",{class:"row"},rs,out);rowb.style.marginTop="12px";
+      body.append(h("p",{text:"Bạn đang đăng nhập bằng "+u.email+". Nhóm và lịch của bạn đi theo tài khoản này, mở trên web hay app đều thấy."}),
+        h("p",{class:"muted small",text:"Trên thiết bị khác, bấm “Tôi đã có tài khoản” và đăng nhập bằng email này."}),rowb,msg);
+      return;
+    }
+    var mode=mode0||"create";
+    var em=h("input",{class:"inp",id:"sy-em",type:"email",autocomplete:"email",inputmode:"email",placeholder:"ten@email.com"});
+    var pw=h("input",{class:"inp",id:"sy-pw",type:"password",autocomplete:mode==="login"?"current-password":"new-password",placeholder:"Ít nhất 6 ký tự"});
+    var err=h("p",{class:"err",role:"status"});
+    var go=h("button",{class:"btn primary",type:"submit",text:mode==="login"?"Đăng nhập":"Tạo tài khoản và đồng bộ"});
+    var sw=h("button",{class:"btn link",type:"button",text:mode==="login"?"Chưa có tài khoản? Tạo mới":"Tôi đã có tài khoản",onclick:function(){api.close();sheetSync(mode==="login"?"create":"login")}});
+    var forgot=mode==="login"?h("button",{class:"btn link",type:"button",text:"Quên mật khẩu",onclick:async function(){
+      var e=em.value.trim();if(!e){err.textContent="Nhập email trước, mình sẽ gửi thư đặt lại mật khẩu.";return}
+      try{await S.auth.sendPasswordResetEmail(e);err.textContent="Đã gửi thư đặt lại mật khẩu tới "+e+"."}catch(x){err.textContent=authMsg(x)}}}):null;
+    body.append(
+      h("p",{text:mode==="login"?"Đăng nhập để lấy lại nhóm và lịch của bạn trên thiết bị này.":"Tạo tài khoản bằng email để nhóm và lịch của bạn có mặt ở mọi thiết bị, cả web lẫn app."}),
+      mode==="login"?h("p",{class:"muted small",text:"Dữ liệu đang có trên thiết bị này sẽ được thay bằng dữ liệu của tài khoản."}):h("p",{class:"muted small",text:"Nhóm bạn đã tạo hoặc tham gia trên thiết bị này sẽ được giữ nguyên."}),
+      h("form",{onsubmit:async function(e){
+        e.preventDefault();err.textContent="";
+        var email=em.value.trim(),pass=pw.value;
+        if(!email||!pass){err.textContent="Nhập đủ email và mật khẩu.";return}
+        go.disabled=true;
+        try{
+          if(mode==="login"){await S.auth.signInWithEmailAndPassword(email,pass);location.reload();return}
+          var cred=firebase.auth.EmailAuthProvider.credential(email,pass);
+          await S.auth.currentUser.linkWithCredential(cred);
+          api.close();schedule();sheetSync();
+        }catch(x){go.disabled=false;err.textContent=authMsg(x)}
+      }},field("sy-em","Email",em),field("sy-pw","Mật khẩu",pw),go,err),
+      h("div",{class:"row"},sw,forgot));
+  });
+}
 function sheetMe(){
   openSheet("Tên hiển thị",function(body,api){
     var err=h("p",{class:"err",role:"status"});
@@ -1258,7 +1310,9 @@ function sheetMe(){
       if(!n){err.textContent="Tên không được để trống.";return}
       if(!canWrite()){err.textContent="Bạn chưa có quyền chỉnh sửa.";return}
       await renameMe(n);api.close();
-    }},field("mynick","Tên của bạn trong mọi nhóm",inp),h("button",{class:"btn primary",type:"submit",text:"Lưu"}),err));
+    }},field("mynick","Tên của bạn trong mọi nhóm",inp),h("button",{class:"btn primary",type:"submit",text:"Lưu"}),err),
+      h("div",{class:"card"},h("h3",{text:"Đồng bộ giữa các thiết bị"}),h("p",{class:"muted small",text:(S.auth&&S.auth.currentUser&&!S.auth.currentUser.isAnonymous)?"Đang đăng nhập: "+S.auth.currentUser.email:"Tạo tài khoản email để mở nhóm trên điện thoại hay máy khác mà không bị trắng."}),h("button",{class:"btn",type:"button",text:(S.auth&&S.auth.currentUser&&!S.auth.currentUser.isAnonymous)?"Quản lý tài khoản":"Đồng bộ ngay",onclick:function(){api.close();sheetSync()}})));
+    body.lastChild.style.marginTop="16px";
   });
 }
 function trap(e){

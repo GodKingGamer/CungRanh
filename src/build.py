@@ -37,7 +37,7 @@ src = rep(src, '<div class="app">', '<body>\n<div class="app">')
 # 2. Nhãn phiên bản + người tạo + nút cài app
 src = rep(src, '  <div id="view"></div>\n</div>',
  f'''  <div id="view"></div>
-  <footer class="ver"><button id="install" class="linkbtn" type="button">Cài app lên điện thoại</button>
+  <footer class="ver"><button id="sync" class="linkbtn" type="button">Đồng bộ giữa các thiết bị</button><button id="install" class="linkbtn" type="button">Cài app lên điện thoại</button>
   <p id="verline">Những người quá rảnh · {version} · Người tạo: {CREATOR}</p></footer>
 </div>
 <div id="toast" class="toast" role="status" hidden><span>Đã có bản mới.</span> <button id="toast-reload" class="btn sm" type="button">Tải lại</button></div>''')
@@ -62,7 +62,7 @@ boot_new = '''  var cfg=window.CUNGRANH_FIREBASE;
       var auth=firebase.auth();
       await new Promise(function(res){var u=auth.onAuthStateChanged(function(){u();res()})});
       if(!auth.currentUser)await auth.signInAnonymously();
-      S.db=firebase.firestore();S.uid=auth.currentUser.uid;S.local=false;
+      S.db=firebase.firestore();S.auth=auth;S.uid=auth.currentUser.uid;S.local=false;
     }catch(e){S.db=null}
   }
   if(!S.db&&!(cfg&&cfg.apiKey)){S.db=makeLocalDb();S.uid=localUid()}
@@ -90,7 +90,7 @@ src = rep(src, '''onclick:function(){
       if(deferredInstall){deferredInstall.prompt();deferredInstall.userChoice.then(function(){deferredInstall=null;api.close()});return}
       steps.hidden=false;''')
 src = rep(src, 'Bản xem thử chưa có app trên kho ứng dụng. “App” ở đây là bản cài lên màn hình chính từ trang web, mở ra không có thanh địa chỉ. Cả hai cách đều dùng chung nhóm của bạn.', '“App” ở đây là bản cài lên màn hình chính từ trang web, mở ra không có thanh địa chỉ và chạy được cả khi mạng yếu. Dùng web hay app thì nhóm của bạn vẫn như nhau.')
-src = rep(src, 'render();\nfunction loadScript', 'render();\n$("#install").addEventListener("click",function(){sheetPlatform(null)});\nfunction loadScript')
+src = rep(src, 'render();\nfunction loadScript', 'render();\n$("#install").addEventListener("click",function(){sheetPlatform(null)});\n$(\"#sync\").addEventListener(\"click\",function(){sheetSync()});\nfunction loadScript')
 
 # 5. Đăng ký service worker + báo bản mới
 sw_reg = '''<script>
