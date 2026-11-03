@@ -105,6 +105,7 @@ if("serviceWorker" in navigator){
 }
 </script>
 '''
+src = rep(src, '<script>\n(function(){', '<script src="config.js"></script>\n<script>\n(function(){')
 src = rep(src, '</body></html>', sw_reg + '</body></html>')
 (root/"index.html").write_text(src, encoding="utf8")
 
