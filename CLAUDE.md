@@ -1,4 +1,4 @@
-# Cùng Rảnh: quy trình sửa app
+# Những người quá rảnh (trước là "Cùng Rảnh"): quy trình sửa app
 
 App PWA tìm ngày rảnh chung cho nhóm bạn. Người tạo: Hoàng Trung Đức. Chạy trên GitHub Pages.
 

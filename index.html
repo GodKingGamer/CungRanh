@@ -4,10 +4,10 @@
 <meta name="theme-color" content="#0B7A63" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F1815" media="(prefers-color-scheme: dark)">
 <meta name="author" content="Hoàng Trung Đức">
-<meta name="description" content="Cùng Rảnh: tìm ngày rảnh chung cho nhóm bạn.">
+<meta name="description" content="Những người quá rảnh: tìm ngày rảnh chung cho nhóm bạn.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Cùng Rảnh">
+<meta name="apple-mobile-web-app-title" content="Quá rảnh">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
@@ -18,7 +18,7 @@
 .linkbtn{font:inherit;font-size:13px;font-weight:600;color:var(--free);background:none;border:0;text-decoration:underline;cursor:pointer;padding:6px}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:30;display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);padding:10px 12px 10px 16px;border-radius:12px;font-size:14px}
 </style>
-<title>Cùng Rảnh</title>
+<title>Những người quá rảnh</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Bricolage+Grotesque:wght@600;800&display=swap">
 <style>
 /* Layout: one narrow column of screens (home, invite, group). The group screen stacks a header, a summary row and three tabs: calendar, events, members. */
@@ -282,13 +282,13 @@ p{margin:0}
 <body>
 <div class="app">
   <div class="top">
-    <button id="brand" class="brand" type="button" aria-label="Về trang chủ">Cùng <i>Rảnh</i><span class="pill">Bản 03</span></button>
+    <button id="brand" class="brand" type="button" aria-label="Về trang chủ">Những người <i>quá rảnh</i><span class="pill">Bản 04</span></button>
     <button id="me" class="me" type="button" hidden></button>
   </div>
   <div id="banner" class="banner" hidden></div>
   <div id="view"></div>
   <footer class="ver"><button id="install" class="linkbtn" type="button">Cài app lên điện thoại</button>
-  <p id="verline">Cùng Rảnh · Bản 03 · 03/11/2026 · Người tạo: Hoàng Trung Đức</p></footer>
+  <p id="verline">Những người quá rảnh · Bản 04 · 03/11/2026 · Người tạo: Hoàng Trung Đức</p></footer>
 </div>
 <div id="toast" class="toast" role="status" hidden><span>Đã có bản mới.</span> <button id="toast-reload" class="btn sm" type="button">Tải lại</button></div>
 
@@ -808,7 +808,7 @@ function viewGroup(gid){
   if(waiting.length){
     prog.append(h("p",{class:"small",text:"Chưa điền: "+names(waiting)}),
       h("button",{class:"btn sm","data-k":"nudge",type:"button",style:null,onclick:function(){
-        copyTo("Mọi người ơi, vào Cùng Rảnh điền ngày rảnh giúp mình với nhé. Nhóm \""+info.name+"\" còn thiếu: "+names(waiting)+".\n"+inviteLink(info.code),this)},text:"Nhắc nhóm"}));
+        copyTo("Mọi người ơi, vào Những người quá rảnh điền ngày rảnh giúp mình với nhé. Nhóm \""+info.name+"\" còn thiếu: "+names(waiting)+".\n"+inviteLink(info.code),this)},text:"Nhắc nhóm"}));
     prog.lastChild.style.marginTop="10px";
   }else if(ms.length){prog.append(h("p",{class:"small",text:"Cả nhóm đã điền xong."}))}
   var rows=N>=2?ranking(list,false).slice(0,3):[];
@@ -1057,7 +1057,7 @@ function isStandalone(){return (window.matchMedia&&matchMedia("(display-mode: st
 function sheetPlatform(gid){
   if(gid&&isStandalone())return;
   var ua=navigator.userAgent||"",ios=/iPhone|iPad|iPod/.test(ua),droid=/Android/.test(ua);
-  openSheet("Bạn muốn dùng Cùng Rảnh thế nào?",function(body,api){
+  openSheet("Bạn muốn dùng Những người quá rảnh thế nào?",function(body,api){
     var steps=h("div",{class:"stack",hidden:true});
     var web=h("button",{class:"btn primary",type:"button","data-k":"useweb",onclick:function(){api.close()},text:"Dùng trên web ngay"});
     var app=h("button",{class:"btn",type:"button","data-k":"useapp",onclick:function(){
@@ -1144,7 +1144,7 @@ function sheetCode(){
 function sheetInvite(gid){
   var info=G(gid).info;if(!info)return;
   var link=inviteLink(info.code);
-  var msg="Mình lập nhóm \""+info.name+"\" trên Cùng Rảnh để chốt ngày hẹn. Bấm link để tham gia: "+link+"\nHoặc nhập mã mời: "+info.code.toUpperCase();
+  var msg="Mình lập nhóm \""+info.name+"\" trên Những người quá rảnh để chốt ngày hẹn. Bấm link để tham gia: "+link+"\nHoặc nhập mã mời: "+info.code.toUpperCase();
   openSheet("Mời bạn vào nhóm",function(body){
     var host=h("div");
     body.append(h("p",{class:"muted small",text:"Ai mở link và bấm “Chấp nhận lời mời” sẽ vào \""+info.name+"\". Họ thấy tên nhóm, người lập nhóm và số thành viên trước khi đồng ý."}),

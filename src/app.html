@@ -1,4 +1,4 @@
-<title>Cùng Rảnh</title>
+<title>Những người quá rảnh</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Bricolage+Grotesque:wght@600;800&display=swap">
 <style>
@@ -262,7 +262,7 @@ p{margin:0}
 
 <div class="app">
   <div class="top">
-    <button id="brand" class="brand" type="button" aria-label="Về trang chủ">Cùng <i>Rảnh</i><span class="pill">Bản xem thử</span></button>
+    <button id="brand" class="brand" type="button" aria-label="Về trang chủ">Những người <i>quá rảnh</i><span class="pill">Bản xem thử</span></button>
     <button id="me" class="me" type="button" hidden></button>
   </div>
   <div id="banner" class="banner" hidden></div>
@@ -749,7 +749,7 @@ function viewGroup(gid){
   if(waiting.length){
     prog.append(h("p",{class:"small",text:"Chưa điền: "+names(waiting)}),
       h("button",{class:"btn sm","data-k":"nudge",type:"button",style:null,onclick:function(){
-        copyTo("Mọi người ơi, vào Cùng Rảnh điền ngày rảnh giúp mình với nhé. Nhóm \""+info.name+"\" còn thiếu: "+names(waiting)+".\n"+inviteLink(info.code),this)},text:"Nhắc nhóm"}));
+        copyTo("Mọi người ơi, vào Những người quá rảnh điền ngày rảnh giúp mình với nhé. Nhóm \""+info.name+"\" còn thiếu: "+names(waiting)+".\n"+inviteLink(info.code),this)},text:"Nhắc nhóm"}));
     prog.lastChild.style.marginTop="10px";
   }else if(ms.length){prog.append(h("p",{class:"small",text:"Cả nhóm đã điền xong."}))}
   var rows=N>=2?ranking(list,false).slice(0,3):[];
@@ -996,7 +996,7 @@ function field(id,label,input){return h("div",{class:"field"},h("label",{for:id,
 
 function sheetPlatform(gid){
   var ua=navigator.userAgent||"",ios=/iPhone|iPad|iPod/.test(ua),droid=/Android/.test(ua);
-  openSheet("Bạn muốn dùng Cùng Rảnh thế nào?",function(body,api){
+  openSheet("Bạn muốn dùng Những người quá rảnh thế nào?",function(body,api){
     var steps=h("div",{class:"stack",hidden:true});
     var web=h("button",{class:"btn primary",type:"button","data-k":"useweb",onclick:function(){api.close()},text:"Dùng trên web ngay"});
     var app=h("button",{class:"btn",type:"button","data-k":"useapp",onclick:function(){
@@ -1082,7 +1082,7 @@ function sheetCode(){
 function sheetInvite(gid){
   var info=G(gid).info;if(!info)return;
   var link=inviteLink(info.code);
-  var msg="Mình lập nhóm \""+info.name+"\" trên Cùng Rảnh để chốt ngày hẹn. Bấm link để tham gia: "+link+"\nHoặc nhập mã mời: "+info.code.toUpperCase();
+  var msg="Mình lập nhóm \""+info.name+"\" trên Những người quá rảnh để chốt ngày hẹn. Bấm link để tham gia: "+link+"\nHoặc nhập mã mời: "+info.code.toUpperCase();
   openSheet("Mời bạn vào nhóm",function(body){
     var host=h("div");
     body.append(h("p",{class:"muted small",text:"Ai mở link và bấm “Chấp nhận lời mời” sẽ vào \""+info.name+"\". Họ thấy tên nhóm, người lập nhóm và số thành viên trước khi đồng ý."}),

@@ -19,10 +19,10 @@ head = f'''<!doctype html>
 <meta name="theme-color" content="#0B7A63" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F1815" media="(prefers-color-scheme: dark)">
 <meta name="author" content="{CREATOR}">
-<meta name="description" content="Cùng Rảnh: tìm ngày rảnh chung cho nhóm bạn.">
+<meta name="description" content="Những người quá rảnh: tìm ngày rảnh chung cho nhóm bạn.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Cùng Rảnh">
+<meta name="apple-mobile-web-app-title" content="Quá rảnh">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
@@ -38,7 +38,7 @@ src = rep(src, '<div class="app">', '<body>\n<div class="app">')
 src = rep(src, '  <div id="view"></div>\n</div>',
  f'''  <div id="view"></div>
   <footer class="ver"><button id="install" class="linkbtn" type="button">Cài app lên điện thoại</button>
-  <p id="verline">Cùng Rảnh · {version} · Người tạo: {CREATOR}</p></footer>
+  <p id="verline">Những người quá rảnh · {version} · Người tạo: {CREATOR}</p></footer>
 </div>
 <div id="toast" class="toast" role="status" hidden><span>Đã có bản mới.</span> <button id="toast-reload" class="btn sm" type="button">Tải lại</button></div>''')
 src = rep(src, '<span class="pill">Bản xem thử</span>', f'<span class="pill">{version.split(" · ")[0]}</span>')
@@ -130,7 +130,7 @@ self.addEventListener("fetch",e=>{{
 }});
 '''
 (root/"sw.js").write_text(sw, encoding="utf8")
-manifest = {"name":"Cùng Rảnh","short_name":"Cùng Rảnh","description":"Tìm ngày rảnh chung cho nhóm bạn","lang":"vi","start_url":"./","scope":"./","display":"standalone","orientation":"portrait","theme_color":"#0B7A63","background_color":"#EDF2EE",
+manifest = {"name":"Những người quá rảnh","short_name":"Quá rảnh","description":"Tìm ngày rảnh chung cho nhóm bạn","lang":"vi","start_url":"./","scope":"./","display":"standalone","orientation":"portrait","theme_color":"#0B7A63","background_color":"#EDF2EE",
  "icons":[{"src":"icons/icon-192.png","sizes":"192x192","type":"image/png"},{"src":"icons/icon-512.png","sizes":"512x512","type":"image/png"},{"src":"icons/icon-512-maskable.png","sizes":"512x512","type":"image/png","purpose":"maskable"}]}
 (root/"manifest.webmanifest").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf8")
 (root/".nojekyll").write_text("")
