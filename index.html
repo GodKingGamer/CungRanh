@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="vi"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0B7A63" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0F1815" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F5EFE6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171412" media="(prefers-color-scheme: dark)">
 <meta name="author" content="Hoàng Trung Đức">
 <meta name="description" content="Những người quá rảnh: tìm ngày rảnh chung cho nhóm bạn.">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,34 +15,34 @@
 <style>:root{color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}[hidden]{display:none!important}img{max-width:100%}
 .ver{margin:28px 0 8px;text-align:center;color:var(--muted);font-size:12px;display:grid;gap:6px;justify-items:center}
 .ver p{margin:0}
-.linkbtn{font:inherit;font-size:13px;font-weight:600;color:var(--free);background:none;border:0;text-decoration:underline;cursor:pointer;padding:6px}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:30;display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);padding:10px 12px 10px 16px;border-radius:12px;font-size:14px}
+.linkbtn{font:inherit;font-size:13px;font-weight:600;color:var(--hi);background:none;border:0;text-decoration:underline;cursor:pointer;padding:6px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:30;display:flex;align-items:center;gap:10px;background:var(--dark);color:var(--dark-ink);padding:10px 12px 10px 16px;border-radius:999px;font-size:14px;box-shadow:var(--shadow);animation:toastin var(--t3) var(--spring)}
+@keyframes toastin{from{opacity:0;transform:translate(-50%,16px) scale(.96)}}
+.toast .btn{background:var(--dark-2);color:var(--dark-ink);border-color:var(--dark-2)}
 </style>
 <title>Những người quá rảnh</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Bricolage+Grotesque:wght@600;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Source+Serif+4:wght@600;700;800&display=swap">
 <style>
 /* Layout: one narrow column of screens (home, invite, group). The group screen stacks a header, a summary row and three tabs: calendar, events, members. */
 :root{
-  --font-display:"Bricolage Grotesque","Be Vietnam Pro",system-ui,sans-serif;
+  --font-display:"Source Serif 4",Georgia,"Be Vietnam Pro",serif;
   --font-body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --bg:#EDF2EE;--surface:#FFFFFF;--surface-2:#E3EAE5;--ink:#14221D;--muted:#586963;--line:#C9D5CE;
-  --free:#0B7A63;--free-ink:#FFFFFF;--free-soft:#D6EEE6;
-  --maybe:#B07508;--maybe-bg:#F7E8C6;--danger:#B3321F;
+  --bg:#F5EFE6;--surface:#FFFCF7;--surface-2:#F3ECE2;--ink:#2A2420;--muted:#6F645A;--line:#E6DCCF;
+  --free:#3F7550;--free-ink:#FFFFFF;--free-soft:#DFEBDC;
+  --maybe:#9A6A00;--maybe-bg:#F8EBCB;--danger:#B8432F;
+  --hi:#B94E33;--hi-ink:#FFFFFF;--peach:#FBE2D6;--sage:#DFEBDC;--butter:#F8EBCB;--lilac:#ECE3F3;--sky:#DDE9F2;
+  --dark:#2A2420;--dark-ink:#F7F1E8;--dark-muted:#BDB1A5;--dark-2:#3A332D;
+  --shadow:0 1px 2px rgba(60,40,20,.05),0 6px 20px rgba(60,40,20,.06);
+  --ease:cubic-bezier(.22,1,.36,1);--spring:cubic-bezier(.34,1.56,.64,1);--t1:.16s;--t2:.28s;--t3:.45s;
   --a0:#0B7A63;--a1:#4457B8;--a2:#8E3F7F;--a3:#B07508;--a4:#C23B55;--a5:#3E6B8A;--a6:#5E8C1F;--a7:#D2641A;--a8:#0E8FA8;--a9:#7A5230;--a-ink:#FFFFFF;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#0E1613;--surface:#16211D;--surface-2:#1D2B26;--ink:#E6EFEA;--muted:#93A59D;--line:#2B3B35;
-    --free:#2FBF98;--free-ink:#06140F;--free-soft:#143A2F;--maybe:#E2B04A;--maybe-bg:#3A2F14;--danger:#F08A78;
-    --a0:#2FBF98;--a1:#8B9CF0;--a2:#D08BC4;--a3:#E2B04A;--a4:#F28FA2;--a5:#7DB3D6;--a6:#A5D15A;--a7:#F2A05C;--a8:#55CDE6;--a9:#C9A27A;--a-ink:#0B1411;
-    color-scheme:dark;
+    --bg:#171412;--surface:#211D1A;--surface-2:#2A2521;--ink:#F1E9DF;--muted:#ADA195;--line:#38312B;--free:#93D2A3;--free-ink:#0F1F14;--free-soft:#1F3626;--maybe:#E2B04A;--maybe-bg:#43351A;--danger:#FF9F8C;--hi:#F0957A;--hi-ink:#1A1310;--peach:#47291F;--sage:#1F3626;--butter:#43351A;--lilac:#33284A;--sky:#1E3140;--dark:#EFE6DA;--dark-ink:#1A1512;--dark-muted:#6E6258;--dark-2:#E0D4C4;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);--a0:#2FBF98;--a1:#8B9CF0;--a2:#D08BC4;--a3:#E2B04A;--a4:#F28FA2;--a5:#7DB3D6;--a6:#A5D15A;--a7:#F2A05C;--a8:#55CDE6;--a9:#C9A27A;--a-ink:#0B1411;color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0E1613;--surface:#16211D;--surface-2:#1D2B26;--ink:#E6EFEA;--muted:#93A59D;--line:#2B3B35;
-  --free:#2FBF98;--free-ink:#06140F;--free-soft:#143A2F;--maybe:#E2B04A;--maybe-bg:#3A2F14;--danger:#F08A78;
-  --a0:#2FBF98;--a1:#8B9CF0;--a2:#D08BC4;--a3:#E2B04A;--a4:#F28FA2;--a5:#7DB3D6;--a6:#A5D15A;--a7:#F2A05C;--a8:#55CDE6;--a9:#C9A27A;--a-ink:#0B1411;
-  color-scheme:dark;
+  --bg:#171412;--surface:#211D1A;--surface-2:#2A2521;--ink:#F1E9DF;--muted:#ADA195;--line:#38312B;--free:#93D2A3;--free-ink:#0F1F14;--free-soft:#1F3626;--maybe:#E2B04A;--maybe-bg:#43351A;--danger:#FF9F8C;--hi:#F0957A;--hi-ink:#1A1310;--peach:#47291F;--sage:#1F3626;--butter:#43351A;--lilac:#33284A;--sky:#1E3140;--dark:#EFE6DA;--dark-ink:#1A1512;--dark-muted:#6E6258;--dark-2:#E0D4C4;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);--a0:#2FBF98;--a1:#8B9CF0;--a2:#D08BC4;--a3:#E2B04A;--a4:#F28FA2;--a5:#7DB3D6;--a6:#A5D15A;--a7:#F2A05C;--a8:#55CDE6;--a9:#C9A27A;--a-ink:#0B1411;color-scheme:dark;
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.5}
@@ -283,18 +283,119 @@ p{margin:0}
   .day{min-height:54px;padding:5px 4px 4px}
   .ev{grid-template-columns:56px minmax(0,1fr);gap:10px}
 }
+
+/* ===== Cozy + Studio ===== */
+body{margin:0}
+.app{max-width:980px}
+h1{font-weight:700}
+.hero h1{font-size:clamp(25px,5vw,30px)}
+.btn{border-radius:999px;transition:transform var(--t1) var(--ease),background-color var(--t2) var(--ease),border-color var(--t2) var(--ease)}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:scale(.95);transition-duration:.08s}
+.btn.primary{background:var(--hi);border-color:var(--hi);color:var(--hi-ink)}
+.btn.dark{background:var(--dark);border-color:var(--dark);color:var(--dark-ink)}
+.card{border-radius:20px;box-shadow:var(--shadow)}
+.card.empty{background:var(--peach);border-color:transparent}
+.inp,.taout{border-radius:14px}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding-block:8px 12px;margin-bottom:6px;background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.brand{display:inline-flex;align-items:center;gap:10px;padding:0}
+.logo{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--dark);color:var(--dark-ink);font:800 18px/1 var(--font-display)}
+.brand .bt{font:700 17px/1.1 var(--font-display);letter-spacing:-.01em}
+.brand .short{display:none}
+.brand i{color:var(--hi)}
+.nav{position:relative;display:inline-flex;gap:2px;padding:4px;background:var(--surface);border:1px solid var(--line);border-radius:999px;max-width:100%;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav .ind{position:absolute;top:4px;bottom:4px;left:0;width:0;border-radius:999px;background:var(--dark);z-index:0;transition:left var(--t3) var(--spring),width var(--t3) var(--spring)}
+.nav button{position:relative;z-index:1;font:600 14px/1 var(--font-body);padding:9px 14px;border:0;border-radius:999px;background:none;color:var(--muted);cursor:pointer;white-space:nowrap;max-width:150px;overflow:hidden;text-overflow:ellipsis;transition:color var(--t2) var(--ease)}
+.nav button[aria-current="page"]{color:var(--dark-ink)}
+.nav button:focus-visible{outline:2px solid var(--hi);outline-offset:1px}
+.tools{display:flex;align-items:center;gap:6px;margin-left:auto}
+.iconbtn{display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:38px;padding:0 6px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 13px/1 var(--font-body);cursor:pointer;transition:transform var(--t1) var(--ease),background-color var(--t2) var(--ease)}
+.iconbtn:hover{transform:translateY(-1px)}
+.iconbtn:active{transform:scale(.92)}
+.iconbtn[aria-pressed="true"]{background:var(--dark);color:var(--dark-ink);border-color:var(--dark)}
+.iconbtn:focus-visible{outline:2px solid var(--hi);outline-offset:2px}
+#themebtn{transition:transform .2s var(--ease)}
+#themebtn.spin{transform:rotate(200deg)}
+.sdot{width:9px;height:9px;border-radius:99px;background:var(--muted);margin-inline:4px}
+.sdot.live{background:var(--free);animation:breathe 2.4s ease-in-out infinite}
+.sdot.off{background:var(--danger)}
+@keyframes breathe{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--free) 50%,transparent)}50%{box-shadow:0 0 0 5px transparent}}
+.me{box-shadow:none;max-width:140px}
+.greet p{margin-top:8px;color:var(--muted)}
+.greet .sum b{color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.stat{display:flex;flex-direction:column;align-items:flex-start;gap:10px;text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:var(--shadow);cursor:pointer;min-width:0;transition:transform var(--t2) var(--ease),box-shadow var(--t2) var(--ease)}
+.stat:hover{transform:translateY(-2px)}
+.stat:focus-visible{outline:2px solid var(--hi);outline-offset:2px}
+.stat .ic{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;font-size:17px;background:var(--peach)}
+.stat:nth-child(2) .ic{background:var(--butter)}
+.stat:nth-child(3) .ic{background:var(--lilac)}
+.stat:nth-child(4) .ic{background:var(--sage)}
+.stat .num{font:700 34px/1 var(--font-display);font-variant-numeric:tabular-nums}
+.stat .lb{font-size:12.5px;color:var(--muted);min-height:2.6em}
+.stat.dk{background:var(--dark);border-color:var(--dark);color:var(--dark-ink)}
+.stat.dk .lb{color:var(--dark-muted)}
+.stat.dk .ic{background:var(--dark-2);color:var(--dark-ink)}
+.groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.gcard{border-radius:20px;box-shadow:var(--shadow);border-left:5px solid var(--a0);transition:transform var(--t2) var(--ease),box-shadow var(--t2) var(--ease)}
+.gcard:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(0,0,0,.06),0 14px 32px rgba(0,0,0,.10)}
+.gc0{border-left-color:var(--a0)}.gc1{border-left-color:var(--a1)}.gc2{border-left-color:var(--a2)}.gc3{border-left-color:var(--a3)}.gc4{border-left-color:var(--a4)}.gc5{border-left-color:var(--a5)}.gc6{border-left-color:var(--a6)}.gc7{border-left-color:var(--a7)}.gc8{border-left-color:var(--a8)}.gc9{border-left-color:var(--a9)}
+.tile{border-radius:16px}
+.tabs{display:inline-flex;gap:2px;padding:4px;background:var(--surface);border:1px solid var(--line);border-radius:999px;max-width:100%}
+.tab{border:0;border-radius:999px;padding:9px 16px;transition:background-color var(--t2) var(--ease),color var(--t2) var(--ease)}
+.tab[aria-selected="true"]{background:var(--dark);color:var(--dark-ink);border:0}
+.seg{border-radius:999px}.segb{border-radius:999px}
+.segb[aria-pressed="true"]{box-shadow:var(--shadow)}
+.day{border-radius:12px;transition:transform .12s var(--ease)}
+.day:active:not(:disabled){transform:scale(.94)}
+.res,.qd{border-radius:16px}
+.pill{display:none}
+.overlay{align-items:stretch;justify-content:flex-end;background:rgba(30,20,12,.5);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);padding:0}
+.sheet{width:min(580px,100%);max-height:none;height:100%;border-radius:24px 0 0 24px;border-width:0 0 0 1px;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:-12px 0 40px rgba(0,0,0,.18)}
+.overlay:not([hidden]) .sheet{animation:slidein var(--t3) var(--ease)}
+@keyframes slidein{from{transform:translateX(100%)}}
+@keyframes slideup{from{transform:translateY(100%)}}
+@keyframes rise{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes grow{from{width:0}}
+.rise{animation:rise var(--t3) var(--ease) both;animation-delay:calc(var(--i,0) * 45ms)}
+.rise .bar i{animation:grow .9s var(--ease) both;animation-delay:.25s}
+:root.theme-anim *{transition:background-color .45s var(--ease),color .45s var(--ease),border-color .45s var(--ease)!important}
+@media (max-width:640px){
+  .topbar{position:static}
+  .brand .full{display:none}.brand .short{display:inline}
+  .nav{order:3;flex-basis:100%}
+  .nav{display:flex}
+  .sdot,#newbtn{display:none}
+  .me span.nm{display:none}
+  .me{padding:4px}
+  .iconbtn{min-width:36px;height:36px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .overlay{align-items:flex-end;justify-content:center}
+  .sheet{height:auto;max-height:92dvh;border-radius:24px 24px 0 0;border-width:1px 0 0}
+  .overlay:not([hidden]) .sheet{animation:slideup var(--t3) var(--ease)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 
 <body>
 <div class="app">
-  <div class="top">
-    <button id="brand" class="brand" type="button" aria-label="Về trang chủ">Những người <i>quá rảnh</i><span class="pill">Bản 08</span></button>
-    <button id="me" class="me" type="button" hidden></button>
-  </div>
+  <header class="topbar">
+    <button id="brand" class="brand" type="button" aria-label="Về trang chủ"><span class="logo" aria-hidden="true">Q</span><span class="bt" data-no-tr><span class="full">Những người <i>quá rảnh</i></span><span class="short">Quá <i>rảnh</i></span></span></button>
+    <nav id="nav" class="nav" aria-label="Điều hướng"><span class="ind" aria-hidden="true"></span></nav>
+    <div id="tools" class="tools">
+      <span id="sdot" class="sdot" role="img"></span>
+      <button id="sndbtn" class="iconbtn" type="button" aria-pressed="true" aria-label="Âm thanh thao tác: bật">🔈</button>
+      <button id="musbtn" class="iconbtn" type="button" aria-pressed="false" aria-label="Nhạc nền: tắt">♪</button>
+      <button id="themebtn" class="iconbtn" type="button" aria-label="Đổi giao diện sáng hoặc tối">☾</button>
+      <button id="newbtn" class="btn sm dark" type="button" hidden>+ Tạo nhóm</button>
+      <button id="me" class="me" type="button" hidden></button>
+    </div>
+  </header>
   <div id="banner" class="banner" hidden></div>
   <div id="view"></div>
   <footer class="ver"><button id="sync" class="linkbtn" type="button">Đồng bộ giữa các thiết bị</button><button id="install" class="linkbtn" type="button">Cài app lên điện thoại</button>
-  <p id="verline">Những người quá rảnh · Bản 08 · 03/11/2026 · Người tạo: Hoàng Trung Đức</p></footer>
+  <p id="verline">Những người quá rảnh · Bản 09 · 26/11/2026 · Người tạo: Hoàng Trung Đức</p></footer>
 </div>
 <div id="toast" class="toast" role="status" hidden><span>Đã có bản mới.</span> <button id="toast-reload" class="btn sm" type="button">Tải lại</button></div>
 
@@ -309,6 +410,7 @@ p{margin:0}
 <script>
 (function(){
 "use strict";
+try{var _t=localStorage.getItem("cr:theme");if(_t==="dark"||_t==="light")document.documentElement.setAttribute("data-theme",_t)}catch(e){}
 /* Link mời của bản xem thử: điền sau khi xuất bản. Khi chạy trên GitHub Pages sẽ tự dùng địa chỉ của chính trang. */
 var ARTIFACT_URL="";
 /* Kho dữ liệu tạm trên một máy: dùng khi chưa cấu hình Firebase. Cùng giao diện với Firestore (doc/collection/onSnapshot/set/update/delete/get). */
@@ -517,6 +619,7 @@ async function createGroup(name,color,opts){
   var av0=(opts&&opts.an)?{ac:opts.ac,an:opts.an}:pickAvatar(gid);
   await S.db.doc("groups/"+gid+"/members/"+S.uid).set({name:myName(),ac:av0.ac,an:av0.an,free:(opts&&opts.free)||[],maybe:(opts&&opts.maybe)||[],done:!!(opts&&opts.done),joinedAt:t,role:"owner"});
   await addToProfile(gid);
+  sfx("add");
   return gid;
 }
 async function joinGroup(gid){
@@ -524,12 +627,14 @@ async function joinGroup(gid){
   var isNew=!g.members.has(S.uid);
   if(isNew){var a0=pickAvatar(gid);await S.db.doc("groups/"+gid+"/members/"+S.uid).set({name:myName(),ac:a0.ac,an:a0.an,free:[],maybe:[],done:false,joinedAt:Date.now(),role:"member"})}
   await addToProfile(gid);
+  sfx("done");
   navigate({view:"group",gid:gid});
   if(isNew)whenMember(gid,function(){sheetAvatar(gid,{first:true,then:function(){sheetPlatform(gid)}})});
 }
 async function leaveGroup(gid){
   try{await S.db.doc("groups/"+gid+"/members/"+S.uid).delete()}catch(e){}
   await saveProfile(myName(),S.profile.groups.filter(function(x){return x!==gid}));
+  sfx("trash");
   navigate({view:"home"});
 }
 async function deleteGroup(gid){
@@ -541,6 +646,7 @@ async function deleteGroup(gid){
   jobs.push("groups/"+gid);
   for(var i=0;i<jobs.length;i++){try{await S.db.doc(jobs[i]).delete()}catch(e){}}
   await saveProfile(myName(),S.profile.groups.filter(function(x){return x!==gid}));
+  sfx("trash");
   navigate({view:"home"});
 }
 async function removeMember(gid,id){try{await S.db.doc("groups/"+gid+"/members/"+id).delete()}catch(e){S.writeErr=true;schedule()}}
@@ -685,7 +791,7 @@ function navigate(r){
 }
 function setRoute(r){
   if(sameRoute(S.route,r))return;
-  S.route=r;S.invite=null;window.scrollTo(0,0);
+  S.route=r;S.invite=null;window.scrollTo(0,0);sfx("nav");
   if(r.view==="invite")loadInvite(r.code);
   reconcile();schedule();
 }
@@ -726,6 +832,7 @@ function render(){
   else if(r.view==="group")node=viewGroup(r.gid);
   else node=viewHome();
   root.replaceChildren(node);
+  uiAfterRender(root);
   if(fk){var el=root.querySelector('[data-k="'+fk+'"]');
     if(el)try{el.focus({preventScroll:true});if(el.tagName==="INPUT"&&el.type==="text"){var n=el.value.length;el.setSelectionRange(n,n)}}catch(e){}}
   if(S.sheet&&S.sheet.refresh)S.sheet.refresh();
@@ -752,7 +859,7 @@ function groupCard(gid){
   var list=responded(gid),waiting=ms.length-list.length;
   var next=Array.from(g.events.values()).filter(function(e){return e.date&&parseIso(e.date)>=today0}).sort(function(a,b){return a.date.localeCompare(b.date)})[0];
   var st=next?"Kèo: "+lab(parseIso(next.date))+" · "+cdText(next.date):(ms.length&&waiting>0?"Còn "+waiting+" người chưa điền lịch":(list.length?"Mọi người đã điền lịch":""));
-  return h("button",{class:"gcard",type:"button","data-k":"g-"+gid,onclick:function(){navigate({view:"group",gid:gid})}},
+  return h("button",{class:"gcard gc"+((info?info.color:0)|0),type:"button","data-k":"g-"+gid,onclick:function(){navigate({view:"group",gid:gid})}},
     tile(info?info.name:"?",info?info.color:0,false,info?info.photo:null,info?info.emoji:null),
     h("span",{class:"grow"},h("span",{class:"nm",text:info?info.name:"Đang tải…"}),
       h("div",{class:"sub",text:info?"Lập bởi "+info.ownerName+" · "+ms.length+" thành viên":""}),
@@ -761,12 +868,15 @@ function groupCard(gid){
 }
 function viewHome(){
   var gs=myGroups(),box=h("div",{class:"stack"});
-  box.append(h("div",{class:"hero"},h("h1",{text:"Nhóm của bạn"}),h("p",{text:"Mỗi nhóm bạn có một lịch chung để chốt ngày hẹn."})));
+  var st=homeStats(gs);
+  box.append(h("div",{class:"hero greet"},h("h1",{text:greetWord()+", "+myName()}),
+    gs.length?h("p",{class:"sum"},"Bạn có ",h("b",{text:gs.length+" nhóm"}),", ",h("b",{text:st.ev+" kèo sắp tới"})," và ",h("b",{text:st.wait+" nhóm chờ bạn điền lịch"}),"."):h("p",{text:"Mỗi nhóm bạn có một lịch chung để chốt ngày hẹn."})));
+  if(gs.length)box.append(statsRow(st));
   if(gs.length){
     box.append(h("div",{class:"row"},
       h("button",{class:"btn primary",type:"button",disabled:!canWrite(),"data-k":"new",onclick:sheetCreate,text:"Tạo nhóm mới"}),
       h("button",{class:"btn",type:"button","data-k":"code",onclick:sheetCode,text:"Nhập mã mời"})));
-    gs.forEach(function(id){box.append(groupCard(id))});
+    var gl=h("div",{class:"groups",id:"glist"});gs.forEach(function(id){gl.append(groupCard(id))});box.append(gl);
   }else{
     box.append(h("div",{class:"card empty"},h("h2",{text:"Chưa có nhóm nào"}),
       h("p",{text:"Tạo nhóm đầu tiên rồi gửi link mời cho bạn bè. Ai bấm vào link và đồng ý sẽ vào đúng nhóm đó."}),
@@ -987,7 +1097,7 @@ function evCard(gid,e,ms){
   var waitN=ms.filter(function(m){return !e.rsvp[m.id]});
   if(waitN.length&&!isPast)who.push("Chưa trả lời: "+names(waitN));
   return h("div",{class:"card ev"+(isPast?" past":"")},
-    h("div",{class:"evd"},h("span",{class:"w",text:WD_FULL[d.getDay()].replace("Thứ ","T").replace("Chủ nhật","CN")}),h("span",{class:"d",text:String(d.getDate())}),h("span",{class:"m",text:"Th"+(d.getMonth()+1)})),
+    h("div",{class:"evd"},h("span",{class:"w",text:WD_HEAD[(d.getDay()+6)%7]}),h("span",{class:"d",text:String(d.getDate())}),h("span",{class:"m",text:"Th"+(d.getMonth()+1)})),
     h("div",{class:"grow"},h("h3",{text:e.title}),
       h("p",{class:"meta",text:[e.time,e.place].filter(Boolean).join(" · ")||lab(d)}),
       e.byName?h("p",{class:"meta",text:"Tạo bởi "+e.byName}):null,
@@ -1054,10 +1164,11 @@ function openSheet(title,build,refresh){
   var api={close:closeSheet,body:body};
   build(body,api);
   if(refresh)S.sheet.refresh=function(){body.replaceChildren();refresh(body,api)};
-  $("#ov").hidden=false;
+  $("#ov").hidden=false;sfx("open");
   var f=body.querySelector("input,button")||$("#ov-close");try{f.focus()}catch(e){}
 }
 function closeSheet(){
+  if(!$("#ov").hidden)sfx("close");
   $("#ov").hidden=true;S.sheet=null;
   if(opener&&opener.isConnected)try{opener.focus()}catch(e){}
 }
@@ -1069,7 +1180,7 @@ function copyTo(text,btn,hostEl){
   }
   try{
     if(!navigator.clipboard||!navigator.clipboard.writeText){fallback();return}
-    navigator.clipboard.writeText(text).then(function(){if(btn){btn.textContent="Đã sao chép";setTimeout(function(){if(btn.isConnected)btn.textContent=orig},2000)}},fallback);
+    navigator.clipboard.writeText(text).then(function(){sfx("done");if(btn){btn.textContent="Đã sao chép";setTimeout(function(){if(btn.isConnected)btn.textContent=orig},2000)}},fallback);
   }catch(e){fallback()}
 }
 function field(id,label,input){return h("div",{class:"field"},h("label",{for:id,text:label}),input)}
@@ -1387,6 +1498,221 @@ function trap(e){
   else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}
 }
 
+/* ---------- Cozy + Studio: thanh trên, âm thanh, nhạc nền, sáng/tối, ngôn ngữ ---------- */
+var LSK="cr:";
+var REDUCED=function(){try{return matchMedia("(prefers-reduced-motion: reduce)").matches}catch(e){return false}};
+var SND={on:ls.get(LSK+"snd")!=="off",ctx:null,gest:false};
+["pointerdown","keydown","touchstart"].forEach(function(ev){window.addEventListener(ev,function(){SND.gest=true},{capture:true,passive:true})});
+function ac(){if(!SND.ctx){var C=window.AudioContext||window.webkitAudioContext;if(!C)return null;try{SND.ctx=new C()}catch(e){return null}}if(SND.ctx.state==="suspended"){try{SND.ctx.resume()}catch(e){}}return SND.ctx}
+function tone(f,d,type,v,at,glide){var c=ac();if(!c)return;var t=c.currentTime+(at||0),o=c.createOscillator(),g=c.createGain();o.type=type||"sine";o.frequency.setValueAtTime(f,t);if(glide)o.frequency.exponentialRampToValueAtTime(glide,t+d);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v||.05,t+.008);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+d+.02)}
+var SFX={tap:function(){tone(1250,.05,"sine",.035)},nav:function(){tone(520,.12,"sine",.04,0,780)},
+  open:function(){tone(440,.16,"sine",.035,0,660);tone(880,.12,"triangle",.015,.04)},close:function(){tone(660,.14,"sine",.03,0,420)},
+  done:function(){tone(784,.12,"sine",.05);tone(1175,.22,"sine",.045,.08)},status:function(){tone(660,.08,"triangle",.035);tone(990,.1,"triangle",.03,.06)},
+  add:function(){tone(587,.1,"sine",.045);tone(880,.1,"sine",.04,.07);tone(1175,.18,"sine",.035,.14)},
+  trash:function(){tone(330,.18,"sine",.045,0,180)},theme:function(){tone(392,.25,"sine",.03,0,523)},
+  error:function(){tone(220,.18,"square",.02);tone(196,.22,"square",.02,.12)}};
+function sfx(n){if(!SND.on||!SND.gest)return;if(REDUCED()&&n!=="error")return;try{if(SFX[n])SFX[n]()}catch(e){}}
+document.addEventListener("click",function(e){
+  var b=e.target.closest&&e.target.closest("button");if(!b||b.id==="sndbtn")return;
+  sfx(b.classList.contains("day")?"status":"tap");
+},true);
+
+/* nhạc nền lo-fi tạo bằng Web Audio: Fmaj7 - Em7 - Dm7 - Cmaj7, 70 BPM, mặc định tắt */
+var CHORDS=[[174.61,220,261.63,329.63],[164.81,196,246.94,293.66],[146.83,174.61,220,261.63],[130.81,164.81,196,246.94]];
+var MUS={on:false,out:null,ns:null,timer:0,i:0};
+function musChord(){
+  var c=SND.ctx,t=c.currentTime+.05,ch=CHORDS[MUS.i++%4];
+  ch.forEach(function(f){
+    [["sine",.8],["triangle",.25]].forEach(function(p){
+      var o=c.createOscillator(),g=c.createGain();o.type=p[0];o.frequency.value=f;
+      g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(p[1]/ch.length*2,t+.5);g.gain.exponentialRampToValueAtTime(.0001,t+4);
+      o.connect(g);g.connect(MUS.out);o.start(t);o.stop(t+4.1)});
+  });
+  for(var k=0;k*60/70<4;k++){
+    var kt=t+k*60/70,ko=c.createOscillator(),kg=c.createGain();
+    ko.type="sine";ko.frequency.setValueAtTime(60,kt);ko.frequency.exponentialRampToValueAtTime(38,kt+.18);
+    kg.gain.setValueAtTime(.9,kt);kg.gain.exponentialRampToValueAtTime(.001,kt+.2);
+    ko.connect(kg);kg.connect(MUS.out);ko.start(kt);ko.stop(kt+.22);
+  }
+}
+function musStart(){
+  var c=ac();if(!c)return false;
+  var out=c.createGain(),lp=c.createBiquadFilter(),t=c.currentTime;
+  lp.type="lowpass";lp.frequency.value=900;out.gain.setValueAtTime(0,t);out.gain.linearRampToValueAtTime(.03,t+1);
+  out.connect(lp);lp.connect(c.destination);
+  var buf=c.createBuffer(1,c.sampleRate*2,c.sampleRate),d=buf.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+  var ns=c.createBufferSource(),hp=c.createBiquadFilter(),ng=c.createGain();ns.buffer=buf;ns.loop=true;hp.type="highpass";hp.frequency.value=2500;ng.gain.value=.004;
+  ns.connect(hp);hp.connect(ng);ng.connect(out);ns.start();
+  MUS.out=out;MUS.ns=ns;MUS.i=0;musChord();MUS.timer=setInterval(musChord,4000);return true;
+}
+function musStop(){
+  clearInterval(MUS.timer);var out=MUS.out,ns=MUS.ns;if(!out||!SND.ctx)return;
+  var t=SND.ctx.currentTime;out.gain.cancelScheduledValues(t);out.gain.setValueAtTime(out.gain.value,t);out.gain.linearRampToValueAtTime(0,t+1);
+  setTimeout(function(){try{ns.stop()}catch(e){}try{out.disconnect()}catch(e){}},1200);MUS.out=null;
+}
+function setMus(on){
+  if(on&&!MUS.on){if(!musStart())return}
+  if(!on&&MUS.on)musStop();
+  MUS.on=on;var b=$("#musbtn");b.setAttribute("aria-pressed",on?"true":"false");b.setAttribute("aria-label",on?"Nhạc nền: bật":"Nhạc nền: tắt");
+}
+function setSnd(on){
+  SND.on=on;ls.set(LSK+"snd",on?"on":"off");var b=$("#sndbtn");
+  b.setAttribute("aria-pressed",on?"true":"false");b.textContent=on?"🔈":"🔇";b.setAttribute("aria-label",on?"Âm thanh thao tác: bật":"Âm thanh thao tác: tắt");
+  if(on){SND.gest=true;sfx("tap")}
+}
+function themeNow(){var t=document.documentElement.getAttribute("data-theme");if(t)return t;try{return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}catch(e){return "light"}}
+function paintTheme(){var d=themeNow()==="dark",b=$("#themebtn");b.textContent=d?"☀":"☾";b.setAttribute("aria-label",d?"Đang ở giao diện tối. Bấm để đổi sang sáng":"Đang ở giao diện sáng. Bấm để đổi sang tối")}
+function toggleTheme(){
+  var r=document.documentElement,n=themeNow()==="dark"?"light":"dark",b=$("#themebtn");
+  r.classList.add("theme-anim");setTimeout(function(){r.classList.remove("theme-anim")},500);
+  r.setAttribute("data-theme",n);ls.set("cr:theme",n);paintTheme();sfx("theme");
+  b.classList.add("spin");setTimeout(function(){b.classList.remove("spin")},220);
+}
+
+/* thanh điều hướng viên thuốc, viên chỉ báo trượt */
+function navItems(){
+  var r=S.route,items=[{t:"Nhóm của tôi",cur:r.view==="home",fn:function(){navigate({view:"home"})}}];
+  if(r.view==="home")items.push({t:"Nhập mã mời",fn:function(){if(canWrite())sheetCode()}});
+  else if(r.view==="group"){var g=S.g[r.gid];items.push({t:(g&&g.info&&g.info.name)||"Nhóm",cur:true,raw:true})}
+  else if(r.view==="invite")items.push({t:"Lời mời",cur:true});
+  return items;
+}
+function buildNav(){
+  var nav=$("#nav");nav.hidden=!(S.profile&&S.profile.name)||S.off;
+  Array.prototype.slice.call(nav.querySelectorAll("button")).forEach(function(b){b.remove()});
+  navItems().forEach(function(it){
+    var b=h("button",{type:"button",text:it.t});if(it.raw)b.setAttribute("data-no-tr","");
+    if(it.cur)b.setAttribute("aria-current","page");
+    if(it.fn)b.addEventListener("click",it.fn);nav.append(b);
+  });
+  requestAnimationFrame(placeInd);
+}
+function placeInd(){
+  var nav=$("#nav"),a=nav.querySelector('[aria-current="page"]'),i=nav.querySelector(".ind");
+  if(!a||nav.hidden){i.style.width="0px";return}
+  i.style.left=a.offsetLeft+"px";i.style.width=a.offsetWidth+"px";
+}
+
+/* trang chủ: lời chào và ô số */
+function greetWord(){var x=new Date().getHours();return x<11?"Chào buổi sáng":x<14?"Chào buổi trưa":x<18?"Chào buổi chiều":"Chào buổi tối"}
+function homeStats(gs){
+  var o={ev:0,wait:0,ppl:0,firstWait:null,nearGid:null},ppl={},near="";
+  gs.forEach(function(id){
+    var g=G(id);
+    g.events.forEach(function(e){if(e.date&&parseIso(e.date)>=today0){o.ev++;if(!near||e.date<near){near=e.date;o.nearGid=id}}});
+    var me=g.members.get(S.uid);if(me&&!submitted(me)){o.wait++;if(!o.firstWait)o.firstWait=id}
+    g.members.forEach(function(m){if(m.id!==S.uid)ppl[m.id]=1});
+  });
+  o.ppl=Object.keys(ppl).length;return o;
+}
+function statTile(cls,ic,n,lb,fn,k){
+  return h("button",{class:"stat "+cls,type:"button","data-k":k,onclick:fn},h("span",{class:"ic","aria-hidden":"true",text:ic}),h("span",{class:"num","data-n":n,text:String(n)}),h("span",{class:"lb",text:lb}));
+}
+function toList(){var e=$("#glist");if(e)e.scrollIntoView({behavior:REDUCED()?"auto":"smooth",block:"start"})}
+function statsRow(st){
+  return h("div",{class:"stats"},
+    statTile("dk","👥",myGroups().length,"Nhóm của bạn",toList,"st-g"),
+    statTile("","📅",st.ev,"Kèo sắp tới",function(){if(st.nearGid)navigate({view:"group",gid:st.nearGid});else toList()},"st-e"),
+    statTile("","⏳",st.wait,"Nhóm chờ bạn điền lịch",function(){if(st.firstWait)navigate({view:"group",gid:st.firstWait});else toList()},"st-w"),
+    statTile("","🫶",st.ppl,"Bạn bè cùng nhóm",toList,"st-p"));
+}
+function countUp(el){
+  var n=+el.dataset.n,t0=performance.now();if(!n||REDUCED()){el.textContent=String(n||0);return}
+  el.textContent="0";
+  (function f(t){var p=Math.min(1,(t-t0)/650),e=1-Math.pow(1-p,3);el.textContent=String(Math.round(n*e));if(p<1)requestAnimationFrame(f)})(t0);
+}
+function uiAfterRender(root){
+  var r=S.route,named=S.profile&&S.profile.name;
+  $("#newbtn").hidden=!named||S.off||!canWrite();
+  var sd=$("#sdot"),sl=S.off?"Chưa kết nối":S.local?"Chế độ một máy":"Đã kết nối";
+  sd.className="sdot "+(S.off?"off":S.local?"local":"live");sd.setAttribute("aria-label",sl);sd.title=sl;
+  buildNav();
+  var key=r.view+":"+(r.gid||r.code||"")+":"+(named?1:0)+":"+(S.off?1:0);
+  if(key===S.uiKey)return;
+  S.uiKey=key;
+  var top=root.firstElementChild;if(!top)return;
+  var list=[];Array.prototype.forEach.call(top.children,function(c){
+    if(c.classList.contains("stats")||c.classList.contains("groups"))Array.prototype.forEach.call(c.children,function(x){list.push(x)});else list.push(c)});
+  if(!REDUCED())list.forEach(function(el,i){
+    el.style.setProperty("--i",String(i));el.classList.add("rise");
+    el.addEventListener("animationend",function(ev){if(ev.target===el){el.classList.remove("rise")}});
+  });
+  Array.prototype.forEach.call(root.querySelectorAll(".num[data-n]"),countUp);
+}
+
+/* nút VI/EN: đổi toàn bộ chữ giao diện (từ điển có sẵn trong app, không cần mạng) */
+/*I18N-START*/var I18N={"exact":{"Nhóm của tôi":"My groups","Nhập mã mời":"Enter invite code","Nhóm của bạn":"Your groups","Kèo sắp tới":"Upcoming plans","Nhóm chờ bạn điền lịch":"Groups waiting for you","Bạn bè cùng nhóm":"Friends in your groups","+ Tạo nhóm":"+ New group","Tạo nhóm":"Create group","Tạo nhóm mới":"New group","Tạo nhóm mẫu để xem thử":"Create a sample group to try","Đang tạo nhóm mẫu…":"Creating sample group…","Về trang chủ":"Back to home","Điều hướng":"Navigation","Đồng bộ giữa các thiết bị":"Sync across devices","Cài app lên điện thoại":"Install on your phone","Đang ở chế độ một máy: nhóm và lời mời mới chỉ có trên thiết bị này. Khi kết nối máy chủ, nhóm sẽ dùng chung giữa mọi người.":"Single-device mode: new groups and invites exist only on this device. Once a server is connected, groups will be shared between everyone.","Chào buổi sáng":"Good morning","Chào buổi trưa":"Good afternoon","Chào buổi chiều":"Good afternoon","Chào buổi tối":"Good evening","Chào bạn!":"Hello!","Bạn có":"You have","và":"and","Mỗi nhóm bạn có một lịch chung để chốt ngày hẹn.":"Each group has a shared calendar to settle on a date.","Mỗi nhóm bạn có một lịch chung. Mọi người đánh dấu ngày rảnh, app tự tìm ngày cả nhóm gặp được.":"Each group has a shared calendar. Everyone marks their free days and the app finds the days the whole group can meet.","Mọi người nên gọi bạn là gì?":"What should everyone call you?","Bắt đầu":"Get started","Tôi đã có tài khoản (đồng bộ từ thiết bị khác)":"I already have an account (sync from another device)","Tôi đã có tài khoản":"I already have an account","Ví dụ: Minh":"e.g. Minh","Nhập tên để mọi người nhận ra bạn.":"Enter a name so everyone recognises you.","Chưa có nhóm nào":"No groups yet","Tạo nhóm đầu tiên rồi gửi link mời cho bạn bè. Ai bấm vào link và đồng ý sẽ vào đúng nhóm đó.":"Create your first group, then send the invite link to your friends. Anyone who opens the link and agrees joins that group.","Bạn vừa nhận được một lời mời vào nhóm. Đặt tên hiển thị trước, rồi mình mở lời mời ra ngay.":"You have just received an invitation to a group. Set your display name first and the invitation opens straight away.","Đang mở lời mời…":"Opening invitation…","Không tìm thấy lời mời":"Invitation not found","Mã mời không đúng, hoặc nhóm này đã bị xóa. Hãy hỏi lại người mời để lấy link mới.":"The invite code is wrong, or this group has been deleted. Ask the person who invited you for a new link.","Lời mời":"Invitation","Lời mời vào nhóm":"Group invitation","Bạn đã ở trong nhóm này":"You are already in this group","Mở nhóm":"Open group","Chấp nhận lời mời":"Accept invitation","Từ chối":"Decline","Đang tham gia…":"Joining…","Nhóm này không còn nữa":"This group no longer exists","Người lập nhóm có thể đã xóa nhóm.":"The group's creator may have deleted it.","Đang mở nhóm…":"Opening group…","Bạn chưa ở trong nhóm này":"You are not in this group","Hãy nhờ người trong nhóm gửi link mời để tham gia.":"Ask someone in the group to send you an invite link.","← Nhóm của tôi":"← My groups","Quay lại danh sách nhóm của tôi":"Back to my groups","Sửa nhóm":"Edit group","Xóa nhóm":"Delete group","Rời nhóm":"Leave group","Mời bạn":"Invite","Đã điền lịch":"Calendars filled in","Chưa điền lịch":"Not filled in","Ngày phù hợp nhất":"Best days","Xem tất cả và chốt ngày":"See all and settle a date","Lịch":"Calendar","Kèo":"Plans","Thành viên":"Members","Điền lịch của tôi":"Fill in my calendar","Xem cả nhóm":"Group view","Chế độ xem":"View mode","Đã lưu · cập nhật trực tiếp":"Saved · updating live","Chỉ cuối tuần":"Weekends only","Tôi bận hết":"I'm busy all weeks","Tôi đã điền xong":"I'm done","Ô càng đậm thì càng nhiều người rảnh, mỗi con vật là một người (rê chuột vào để làm nó sáng lên). Chạm vào một ngày để xem ai rảnh, hoặc chạm tên một người để xem lịch riêng của họ.":"The darker a cell, the more people are free; each animal is one person (hover over it to make it light up). Tap a day to see who is free, or tap a name to see that person's own calendar.","Chạm vào một ngày trên lịch: rảnh, rồi tạm được, rồi bỏ chọn. Hoặc nhập ngày bằng tay ở khung bên dưới.":"Tap a day on the calendar: free, then maybe, then clear. Or type dates in the box below.","Còn ngày nào đi được nữa không? Ngày chưa chắc thì chọn “Tạm được”, nhóm vẫn thấy bạn có thể đi. Ngày không đánh dấu được hiểu là bận.":"Any other days you can make it? If you are not sure about a day, choose “Maybe” and the group will still see you might come. Days you don't mark count as busy.","Bấm khi bạn đã đánh dấu xong. Ngày không đánh dấu được hiểu là bận.":"Tap when you have finished marking. Days you don't mark count as busy.","Nếu 8 tuần tới bạn đều bận thì bấm “Tôi bận hết”. Nếu chỉ chưa kịp điền, hãy quay lại chọn ngày.":"If you are busy for the next 8 weeks, tap “I'm busy all weeks”. If you just haven't had time to fill it in, go back and choose your days.","Chạm vào lịch bên dưới hay gõ ngày ở đây đều được, cách nào tiện thì dùng. Gõ ngày/tháng, cách nhau bằng dấu phẩy. Khoảng ngày viết 20-25/11.":"You can tap the calendar below or type dates here, whichever is easier. Type day/month separated by commas. Write a range as 20-25/11.","Nhập ngày bằng tay":"Type dates","Hoặc chọn theo thứ, áp dụng cho mọi tuần trong 8 tuần tới:":"Or choose by weekday, applied to every week in the next 8 weeks:","Ví dụ: 15/11, 22/11, 28-30/11, 5/12-7/12":"e.g. 15/11, 22/11, 28-30/11, 5/12-7/12","Đánh dấu là":"Mark as","Áp dụng":"Apply","Rảnh":"Free","Tạm được":"Maybe","Tạm":"Maybe","Bận":"Busy","rảnh":"free","bận":"busy","tạm được":"maybe","Không rảnh":"Not free","Hôm nay":"Today","Ngày mai":"Tomorrow","Đã qua":"Past","Chủ nhật":"Sunday","Thứ hai":"Monday","Thứ ba":"Tuesday","Thứ tư":"Wednesday","Thứ năm":"Thursday","Thứ sáu":"Friday","Thứ bảy":"Saturday","T2":"Mon","T3":"Tue","T4":"Wed","T5":"Thu","T6":"Fri","T7":"Sat","CN":"Sun","Chưa ai điền lịch.":"Nobody has filled in a calendar yet.","Chưa ai điền lịch. Chuyển sang “Điền lịch của tôi” để bắt đầu.":"Nobody has filled in a calendar yet. Switch to “Fill in my calendar” to start.","Cả nhóm đã điền xong.":"The whole group has finished.","Mọi người đã điền lịch":"Everyone has filled in their calendar","Cần ít nhất 2 người điền lịch để tìm ngày chung.":"At least 2 people need to fill in their calendar to find common days.","Mới có 1 người điền. Cần ít nhất 2 người để tìm ngày chung.":"Only 1 person has filled in so far. At least 2 are needed to find common days.","Chưa có ngày nào phù hợp.":"No suitable days yet.","Không có ngày nào phù hợp trong khoảng này.":"No suitable days in this period.","Bạn chưa đánh dấu ngày nào":"You haven't marked any days","Bận cả 8 tuần · đã điền xong":"Busy all 8 weeks · done","Chốt ngày này":"Settle on this day","Chốt kèo":"Settle plan","Ngày tốt nhất":"Best day","Các ngày cả nhóm có thể gặp (":"Days the whole group can meet (","Chưa có kèo nào":"No plans yet","Khi đã chọn được ngày, bấm “Chốt ngày này” trong bảng ngày phù hợp, hoặc tạo kèo ở đây.":"Once you have picked a day, tap “Settle on this day” in the best-days table, or create a plan here.","Kèo của nhóm":"Group plans","Tạo kèo":"Create plan","Tạo kèo mới":"New plan","Tên kèo":"Plan name","Ví dụ: Ăn tối cuối tuần":"e.g. Weekend dinner","Địa điểm":"Place","Không bắt buộc":"Optional","Giờ":"Time","Ngày":"Date","Xóa kèo":"Delete plan","Đặt tên cho kèo.":"Give the plan a name.","Chọn một ngày từ hôm nay trở đi.":"Choose a day from today onwards.","Chưa tạo được kèo. Thử lại sau ít phút.":"Couldn't create the plan. Try again in a few minutes.","Đi":"Going","Có thể":"Maybe","Không":"No","Thành viên. Chạm một tên để xem lịch riêng của người đó.":"Members. Tap a name to see that person's own calendar.","Mời ra":"Remove","Bấm lần nữa":"Tap again","Bấm lần nữa để xác nhận":"Tap again to confirm","Bấm lần nữa để xóa":"Tap again to delete","Bấm lần nữa để xóa hết":"Tap again to delete all","Người lập nhóm":"Group creator","Cả nhóm":"Whole group","Mời bạn vào nhóm":"Invite people to the group","Mã mời":"Invite code","Link mời":"Invite link","Sao chép link":"Copy link","Sao chép lời mời":"Copy invitation","Sao chép link app":"Copy app link","Sao chép để gửi nhóm":"Copy to send to the group","Đã sao chép":"Copied","Hãy sao chép đoạn bên dưới":"Please copy the text below","Nội dung để sao chép":"Text to copy","Nhắc nhóm":"Nudge the group","Đóng":"Close","Hủy":"Cancel","Lưu":"Save","Mở lời mời":"Open invitation","Mã mời gồm 6 chữ hoặc số.":"The invite code has 6 letters or digits.","6 ký tự, ví dụ: k7m2xq":"6 characters, e.g. k7m2xq","Tên nhóm":"Group name","Ví dụ: Hội bạn đại học":"e.g. University friends","Tên nhóm không được để trống.":"The group name can't be empty.","Đặt tên cho nhóm trước khi tạo.":"Name the group before creating it.","Chưa tạo được nhóm. Thử lại sau ít phút.":"Couldn't create the group. Try again in a few minutes.","Màu":"Colour","Màu nhóm":"Group colour","Màu nền":"Background colour","Ảnh nhóm":"Group photo","Chọn ảnh":"Choose photo","Chọn ảnh nhóm":"Choose group photo","Đổi ảnh":"Change photo","Bỏ ảnh":"Remove photo","Ảnh được cắt vuông và thu nhỏ. Bỏ ảnh để dùng hình vui bên dưới.":"The photo is cropped square and shrunk. Remove it to use a fun icon below.","Hình vui (khi không có ảnh)":"Fun icon (when there is no photo)","Chọn một hình vui để dễ phân biệt các nhóm.":"Pick a fun icon to tell your groups apart.","Chỉ dùng chữ cái đầu":"Use the initial only","Để mặc định":"Use default","Không đọc được ảnh này. Hãy thử ảnh khác (JPG hoặc PNG).":"Couldn't read this photo. Try another (JPG or PNG).","Hình đại diện nhóm":"Group icon","Hình đại diện trong nhóm":"Your picture in the group","Chọn hình của bạn":"Choose your picture","Con vật":"Animal","Điệu nhảy":"Dance","Điệu nhảy khi được rê chuột vào":"Dance when hovered","Cả nhóm sẽ thấy hình và điệu nhảy này trên lịch.":"The whole group will see this picture and dance on the calendar.","Mèo":"Cat","Chó":"Dog","Cáo":"Fox","Gấu trúc":"Panda","Ếch":"Frog","Cánh cụt":"Penguin","Sư tử":"Lion","Bạch tuộc":"Octopus","Thỏ":"Rabbit","Cú":"Owl","Rùa":"Turtle","Kỳ lân":"Unicorn","Nảy tưng tưng":"Bouncy","Lắc lư":"Wiggle","Xoay vòng":"Spin","Lộn nhào":"Somersault","Đung đưa":"Sway","Rung rinh":"Shake","Nhảy cóc":"Leapfrog","Phập phồng":"Pulse","Rời nhóm này?":"Leave this group?","Xóa nhóm này?":"Delete this group?","Xóa nhóm sẽ xóa luôn lịch, kèo và link mời. Không thể khôi phục.":"Deleting the group also deletes its calendar, plans and invite link. This can't be undone.","Lịch bạn đã điền trong nhóm này sẽ bị xóa. Bạn có thể vào lại bằng link mời.":"Your calendar in this group will be deleted. You can rejoin with an invite link.","Không, giữ lại":"No, keep it","Xóa hết lịch của tôi":"Clear my whole calendar","Đã xóa hết lịch của bạn.":"Your calendar has been cleared.","Bạn muốn dùng Những người quá rảnh thế nào?":"How would you like to use Những người quá rảnh?","Bạn đã vào nhóm rồi. Chọn cách dùng thuận tiện nhất, đổi ý lúc nào cũng được.":"You're in the group. Pick whichever way suits you best; you can change your mind any time.","Dùng trên web ngay":"Use on the web now","Bản xem thử chưa có app trên kho ứng dụng. “App” ở đây là bản cài lên màn hình chính từ trang web, mở ra không có thanh địa chỉ. Cả hai cách đều dùng chung nhóm của bạn.":"“App” here means installing the web page on your home screen; it opens without an address bar. Both ways share the same groups.","“App” ở đây là bản cài lên màn hình chính từ trang web, mở ra không có thanh địa chỉ và chạy được cả khi mạng yếu. Dùng web hay app thì nhóm của bạn vẫn như nhau.":"“App” here means installing the web page on your home screen; it opens without an address bar and works even on a weak connection. Your groups are the same on the web or in the app.","Bấm nút Chia sẻ ở thanh dưới.":"Tap the Share button on the bottom bar.","Chọn “Thêm vào MH chính”, rồi bấm Thêm.":"Choose “Add to Home Screen”, then tap Add.","Bấm dấu ba chấm ở góc phải trên.":"Tap the three dots at the top right.","Chọn “Cài đặt ứng dụng” hoặc “Thêm vào màn hình chính”.":"Choose “Install app” or “Add to Home screen”.","Mở link này bằng Chrome.":"Open this link in Chrome.","Mở link này bằng Safari (không phải Chrome).":"Open this link in Safari (not Chrome).","Trên điện thoại, mở link này bằng Safari (iPhone) hoặc Chrome (Android).":"On your phone, open this link in Safari (iPhone) or Chrome (Android).","iPhone: Chia sẻ rồi “Thêm vào MH chính”. Android: ba chấm rồi “Cài đặt ứng dụng”.":"iPhone: Share, then “Add to Home Screen”. Android: three dots, then “Install app”.","Tên của bạn trong mọi nhóm":"Your name in every group","Tên hiển thị":"Display name","Tên không được để trống.":"The name can't be empty.","Đổi tên hiển thị":"Change display name","Quản lý tài khoản":"Manage account","Ẩn danh":"Anonymous","Đăng nhập":"Sign in","Đăng xuất khỏi thiết bị này":"Sign out of this device","Đồng bộ ngay":"Sync now","Tạo tài khoản và đồng bộ":"Create account and sync","Chưa có tài khoản? Tạo mới":"No account yet? Create one","Quên mật khẩu":"Forgot password","Gửi email đặt lại mật khẩu":"Send password reset email","Mật khẩu":"Password","Ít nhất 6 ký tự":"At least 6 characters","Email chưa đúng định dạng.":"The email format isn't right.","Email hoặc mật khẩu chưa đúng.":"The email or password isn't right.","Email này đã có tài khoản. Hãy chọn “Đăng nhập”.":"This email already has an account. Choose “Sign in”.","Nhập đủ email và mật khẩu.":"Enter both email and password.","Mật khẩu cần ít nhất 6 ký tự.":"The password needs at least 6 characters.","Nhập email trước, mình sẽ gửi thư đặt lại mật khẩu.":"Enter your email first and we'll send a password reset email.","Chức năng đăng nhập bằng email chưa được bật trên máy chủ.":"Email sign-in isn't enabled on the server.","Thử quá nhiều lần. Đợi vài phút rồi thử lại.":"Too many attempts. Wait a few minutes and try again.","Không có mạng. Kiểm tra kết nối rồi thử lại.":"No connection. Check your network and try again.","Chưa thực hiện được. Thử lại sau ít phút.":"Couldn't do that. Try again in a few minutes.","Đồng bộ cần kết nối máy chủ. Bản này đang chạy ở chế độ một máy.":"Syncing needs a server connection. This copy is running in single-device mode.","Tạo tài khoản bằng email để nhóm và lịch của bạn có mặt ở mọi thiết bị, cả web lẫn app.":"Create an account with your email so your groups and calendars appear on every device, on the web and in the app.","Tạo tài khoản email để mở nhóm trên điện thoại hay máy khác mà không bị trắng.":"Create an email account to open your groups on your phone or another device without starting from scratch.","Nhóm bạn đã tạo hoặc tham gia trên thiết bị này sẽ được giữ nguyên.":"Groups you created or joined on this device will be kept.","Dữ liệu đang có trên thiết bị này sẽ được thay bằng dữ liệu của tài khoản.":"The data on this device will be replaced by your account's data.","Đăng nhập để lấy lại nhóm và lịch của bạn trên thiết bị này.":"Sign in to get your groups and calendars back on this device.","Trên thiết bị khác, bấm “Tôi đã có tài khoản” và đăng nhập bằng email này.":"On your other device, tap “I already have an account” and sign in with this email.",". Nhóm và lịch của bạn đi theo tài khoản này, mở trên web hay app đều thấy.":". Your groups and calendars follow this account, on the web or in the app.","Chưa kết nối":"Not connected","Đã kết nối":"Connected","Chế độ một máy":"Single-device mode","Chưa mở được dữ liệu":"Couldn't open the data","Trang cần kho dữ liệu chung để lưu nhóm và lịch.":"The page needs the shared data store to save groups and calendars.","Chưa kết nối được máy chủ. Kiểm tra mạng rồi tải lại trang.":"Couldn't reach the server. Check your connection and reload.","Chưa kết nối được dữ liệu. Thử tải lại trang.":"Couldn't reach the data. Try reloading the page.","Bạn chỉ xem được. Nhờ người chia sẻ cấp quyền chỉnh sửa (Contributor) để tạo nhóm và điền lịch.":"You can only view. Ask whoever shared this to give you edit access (Contributor) so you can create groups and fill in calendars.","Bạn chưa có quyền chỉnh sửa trang này.":"You don't have permission to edit this page.","Bạn chưa có quyền chỉnh sửa.":"You don't have permission to edit.","Chưa lưu được. Sẽ thử lại ở lần chạm tiếp theo.":"Couldn't save. Will retry on your next tap.","Chưa lưu được. Thử lại sau ít phút.":"Couldn't save. Try again in a few minutes.","Đang lưu…":"Saving…","Đang tải…":"Loading…","Đang tạo…":"Creating…","Đang xử lý…":"Working…","Cần ít nhất 2 lựa chọn":"At least 2 options needed","Ai đặt bàn? Ai trả tiền cà phê? Sửa danh sách bên dưới, các lựa chọn cách nhau bằng dấu phẩy.":"Who books the table? Who pays for coffee? Edit the list below, separating choices with commas.","Các lựa chọn, ngăn cách bằng dấu phẩy":"Choices, separated by commas","Quay chọn":"Spin to choose","Quay lại điền":"Back to filling in","Quay lại điền thêm":"Back to add more","Bấm Quay để chọn":"Press Spin to choose","Vẫn xong":"Done anyway","Nhóm mẫu · Cà phê cuối tuần":"Sample group · Weekend coffee","Cà phê cuối tuần":"Weekend coffee","Quán quen gần trung tâm":"Regular spot near the centre","Bình":"Bình","Dũng":"Dũng","Hà":"Hà","Bạn":"You","Nhóm “":"Group “","Xóa nhóm “":"Delete group “","Âm thanh thao tác: bật":"Action sounds: on","Âm thanh thao tác: tắt":"Action sounds: off","Nhạc nền: bật":"Background music: on","Nhạc nền: tắt":"Background music: off","Đang ở giao diện sáng. Bấm để đổi sang tối":"Light theme. Press for dark","Đang ở giao diện tối. Bấm để đổi sang sáng":"Dark theme. Press for light","Đổi giao diện sáng hoặc tối":"Switch between light and dark","Ngôn ngữ: Tiếng Việt. Bấm để đổi sang English":"Language: Vietnamese. Press for English","Đã có bản mới.":"A new version is available.","Tải lại":"Reload","Quay":"Spin","Mẫu":"Sample","ngày tốt nhất":"best day","đã qua":"past","chưa chọn":"not chosen","đã có người dùng":"already taken","đã điền xong":"done","chưa bấm xong":"not marked as done yet","Đã điền xong":"Done"},"patterns":[["^· (\\d+) tạm được$","· $1 maybe"],["^· (\\d+) người rảnh$","· $1 free"],["^Tạm được: (.+)$","Maybe: $1"],["^Rảnh: (.+)$","Free: $1"],["^Không rảnh: (.+)$","Not free: $1"],["^Bận: (.+)$","Busy: $1"],["^Rảnh \\((\\d+)\\)$","Free ($1)"],["^Tạm được \\((\\d+)\\)$","Maybe ($1)"],["^Không rảnh \\((\\d+)\\)$","Not free ($1)"],["^Bận \\((\\d+)\\)$","Busy ($1)"],["^Chào buổi sáng, (.+)$","Good morning, $1"],["^Chào buổi trưa, (.+)$","Good afternoon, $1"],["^Chào buổi chiều, (.+)$","Good afternoon, $1"],["^Chào buổi tối, (.+)$","Good evening, $1"],["^(\\d+) nhóm$","$1 group||$1 groups"],["^(\\d+) kèo sắp tới$","$1 upcoming plan||$1 upcoming plans"],["^(\\d+) nhóm chờ bạn điền lịch$","$1 group waiting for you||$1 groups waiting for you"],["^Lập bởi (.+)$","Created by $1"],["^Tạo bởi (.+)$","Created by $1"],["^(\\d+) thành viên$","$1 member||$1 members"],["^(\\d+) trên (\\d+) người$","$1 of $2 people"],["^(\\d+) trên (\\d+) người rảnh$","$1 of $2 people free"],["^(\\d+)/(\\d+) rảnh$","$1/$2 free"],["^(\\d+) ngày rảnh$","$1 free day||$1 free days"],["^vào nhóm (\\d+/\\d+)$","joined $1"],["^Kèo \\((\\d+)\\)$","Plans ($1)"],["^Thành viên \\((\\d+)\\)$","Members ($1)"],["^Còn (\\d+) ngày$","$1 day left||$1 days left"],["^Còn (\\d+) người chưa điền lịch$","$1 person hasn't filled in their calendar||$1 people haven't filled in their calendar"],["^Còn (.+) chưa điền\\. Kết quả có thể thay đổi khi họ điền xong\\.$","Still waiting on $1. The result may change once they finish."],["^Còn (.+) chưa điền\\. Kết quả có thể thay đổi\\.$","Still waiting on $1. The result may change."],["^Chưa điền: (.+)$","Not filled in: $1"],["^Chưa trả lời: (.+)$","No reply: $1"],["^Đi: (.+)$","Going: $1"],["^Có thể: (.+)$","Maybe: $1"],["^Không: (.+)$","No: $1"],["^Đi (\\d+)$","Going $1"],["^Có thể (\\d+)$","Maybe $1"],["^Không (\\d+)$","No $1"],["^Bạn mới đánh dấu (\\d+) ngày$","You have marked $1 day||You have marked $1 days"],["^Dựa trên (\\d+) người đã điền$","Based on $1 person who filled in||Based on $1 people who filled in"],["^Đang xem lịch của (.+)\\. Chạm lại tên đó để xem cả nhóm\\.$","Viewing $1's calendar. Tap the name again to see the whole group."],["^Đổi hình đại diện và tên, hiện là (.+)$","Change picture and name, currently $1"],["^Đổi tên hiển thị, hiện là (.+)$","Change display name, currently $1"],["^Màu (\\d+)$","Colour $1"],["^Màu (\\d+), đã có người dùng$","Colour $1, already taken"],["^Hình (.+)$","Picture $1"],["^Bản (\\d+)$","Version $1"],["^Người tạo: (.+)$","Creator: $1"],["^Ai mở link và bấm “Chấp nhận lời mời” sẽ vào \"(.+)\"\\. Họ thấy tên nhóm, người lập nhóm và số thành viên trước khi đồng ý\\.$","Anyone who opens the link and taps “Accept invitation” joins \"$1\". They see the group name, who created it and how many members it has before agreeing."],["^Nhóm “(.+)” sẽ bị xóa cùng lịch, kèo và link mời của nhóm\\. Mọi thành viên sẽ không còn thấy nhóm\\. Không thể khôi phục\\.$","The group “$1” will be deleted along with its calendar, plans and invite link. Members will no longer see it. This can't be undone."],["^Lịch bạn đã điền trong nhóm “(.+)” sẽ bị xóa\\. Bạn có thể vào lại bằng link mời\\.$","Your calendar in “$1” will be deleted. You can rejoin with an invite link."],["^Xóa nhóm “(.+)”$","Delete group “$1”"],["^Rời nhóm “(.+)”$","Leave group “$1”"],["^Không hiểu: (.+)\\. Hãy nhập dạng 15/11 hoặc 20-25/11\\.$","Couldn't read: $1. Enter dates like 15/11 or 20-25/11."],["^Đã đánh dấu (\\d+) ngày là rảnh\\.$","Marked $1 day(s) as free."],["^Đã đánh dấu (\\d+) ngày là tạm được\\.$","Marked $1 day(s) as maybe."],["^Đã đánh dấu (\\d+) ngày là bận\\.$","Marked $1 day(s) as busy."],["^Đã đánh dấu (\\d+) ngày là (rảnh|tạm được|bận)\\. Không hiểu: (.+)\\.$","Marked $1 day(s). Couldn't read: $3."],["^Bạn đang đăng nhập bằng (.+)\\. Nhóm và lịch của bạn đi theo tài khoản này, mở trên web hay app đều thấy\\.$","You are signed in as $1. Your groups and calendars follow this account, on the web or in the app."],["^Bạn đang đăng nhập bằng (.+)$","You are signed in as $1"],["^Đang đăng nhập: (.+)$","Signed in: $1"],["^Đã gửi (?:email|thư) đặt lại mật khẩu tới (.+?)\\.?$","Password reset email sent to $1"],["^Đã tạo tài khoản (.+)$","Account created: $1"],["^Chủ nhật (\\d+/\\d+)$","Sunday $1"],["^Kèo: Chủ nhật (\\d+/\\d+)$","Plan: Sunday $1"],["^Thứ hai (\\d+/\\d+)$","Monday $1"],["^Kèo: Thứ hai (\\d+/\\d+)$","Plan: Monday $1"],["^Thứ ba (\\d+/\\d+)$","Tuesday $1"],["^Kèo: Thứ ba (\\d+/\\d+)$","Plan: Tuesday $1"],["^Thứ tư (\\d+/\\d+)$","Wednesday $1"],["^Kèo: Thứ tư (\\d+/\\d+)$","Plan: Wednesday $1"],["^Thứ năm (\\d+/\\d+)$","Thursday $1"],["^Kèo: Thứ năm (\\d+/\\d+)$","Plan: Thursday $1"],["^Thứ sáu (\\d+/\\d+)$","Friday $1"],["^Kèo: Thứ sáu (\\d+/\\d+)$","Plan: Friday $1"],["^Thứ bảy (\\d+/\\d+)$","Saturday $1"],["^Kèo: Thứ bảy (\\d+/\\d+)$","Plan: Saturday $1"],["^Tháng 1, (\\d+)$","January $1"],["^Th1$","Jan"],["^Tháng 2, (\\d+)$","February $1"],["^Th2$","Feb"],["^Tháng 3, (\\d+)$","March $1"],["^Th3$","Mar"],["^Tháng 4, (\\d+)$","April $1"],["^Th4$","Apr"],["^Tháng 5, (\\d+)$","May $1"],["^Th5$","May"],["^Tháng 6, (\\d+)$","June $1"],["^Th6$","Jun"],["^Tháng 7, (\\d+)$","July $1"],["^Th7$","Jul"],["^Tháng 8, (\\d+)$","August $1"],["^Th8$","Aug"],["^Tháng 9, (\\d+)$","September $1"],["^Th9$","Sep"],["^Tháng 10, (\\d+)$","October $1"],["^Th10$","Oct"],["^Tháng 11, (\\d+)$","November $1"],["^Th11$","Nov"],["^Tháng 12, (\\d+)$","December $1"],["^Th12$","Dec"]]};/*I18N-END*/
+var LANG=ls.get(LSK+"lang")==="en"?"en":"vi";
+var I_ATTR=["placeholder","aria-label","title"],i18nOrig=new WeakMap(),i18nBusy=false,I18N_RE=I18N.patterns.map(function(p){return [new RegExp(p[0]),p[1]]});
+function i18nTr(s){
+  var t=s.trim();if(!t)return null;
+  var r0=i18nOne(s,t,true);if(r0!==null)return r0;
+  if(t.indexOf(" · ")>0){
+    var parts=t.split(" · "),ch=false,out=parts.map(function(x){var r=i18nOne(x,x);if(r!==null){ch=true;return r}return x});
+    if(ch)return s.replace(t,function(){return out.join(" · ")});
+  }
+  var r1=i18nOne(s,t);if(r1!==null)return r1;
+  if(t.indexOf(", ")>0&&t.length<200){
+    var p2=t.split(", "),ch2=false,o2=p2.map(function(x){var r=i18nOne(x,x);if(r!==null){ch2=true;return r}return x});
+    if(ch2)return s.replace(t,function(){return o2.join(", ")});
+  }
+  return null;
+}
+function i18nOne(s,t,exactOnly){
+  if(Object.prototype.hasOwnProperty.call(I18N.exact,t)){var v=I18N.exact[t];return s.replace(t,function(){return v})}
+  if(exactOnly)return null;
+  for(var i=0;i<I18N_RE.length;i++){var m=t.match(I18N_RE[i][0]);if(m){
+    var rp=I18N_RE[i][1];if(rp.indexOf("||")>=0){var pr=rp.split("||");rp=(+m[1]===1)?pr[0]:pr[1]}
+    var out=t.replace(I18N_RE[i][0],rp);return s.replace(t,function(){return out})}}
+  return null;
+}
+function i18nNode(n){
+  if(n.nodeType===3){
+    var p=n.parentNode;if(p&&/^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName))return;
+    var o=i18nOrig.get(n);
+    if(LANG==="en"){var src=o&&n.nodeValue===o.t?o.s:n.nodeValue,r=i18nTr(src);if(r!==null&&r!==n.nodeValue){i18nOrig.set(n,{s:src,t:r});n.nodeValue=r}}
+    else if(o&&n.nodeValue===o.t){n.nodeValue=o.s;i18nOrig.delete(n)}
+  }else if(n.nodeType===1){
+    if(n.hasAttribute("data-no-tr"))return;
+    I_ATTR.forEach(function(a){
+      if(!n.hasAttribute(a))return;var k="_o_"+a,cur=n.getAttribute(a);
+      if(LANG==="en"){var base=n[k]&&n[k].t===cur?n[k].s:cur,r=i18nTr(base);if(r!==null&&r!==cur){n[k]={s:base,t:r};n.setAttribute(a,r)}}
+      else if(n[k]&&n[k].t===cur){n.setAttribute(a,n[k].s);n[k]=null}
+    });
+    for(var c=n.firstChild;c;c=c.nextSibling)i18nNode(c);
+  }
+}
+function i18nRun(root){i18nBusy=true;try{i18nNode(root)}catch(e){}i18nBusy=false}
+function setLang(l){
+  LANG=l;ls.set(LSK+"lang",l);document.documentElement.lang=l;
+  var b=$("#langbtn");b.textContent=l==="en"?"EN":"VI";
+  b.setAttribute("aria-label",l==="en"?"Language: English. Press for Vietnamese":"Ngôn ngữ: Tiếng Việt. Bấm để đổi sang English");
+  i18nRun(document.body);
+}
+function initUi(){
+  var tools=$("#tools");
+  var lb=h("button",{type:"button",id:"langbtn",class:"iconbtn","data-no-tr":true});
+  tools.insertBefore(lb,tools.firstChild);
+  lb.addEventListener("click",function(){setLang(LANG==="en"?"vi":"en")});
+  $("#sndbtn").addEventListener("click",function(){setSnd(!SND.on)});
+  $("#musbtn").addEventListener("click",function(){setMus(!MUS.on)});
+  $("#themebtn").addEventListener("click",toggleTheme);
+  $("#newbtn").addEventListener("click",function(){if(canWrite())sheetCreate()});
+  setSnd(SND.on);paintTheme();
+  document.documentElement.lang=LANG;
+  lb.textContent=LANG==="en"?"EN":"VI";
+  lb.setAttribute("aria-label",LANG==="en"?"Language: English. Press for Vietnamese":"Ngôn ngữ: Tiếng Việt. Bấm để đổi sang English");
+  new MutationObserver(function(ms){
+    if(i18nBusy||LANG!=="en")return;
+    i18nBusy=true;
+    try{ms.forEach(function(m){if(m.type==="childList")m.addedNodes.forEach(i18nNode);else i18nNode(m.target)})}catch(e){}
+    i18nBusy=false;
+  }).observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:I_ATTR});
+  window.addEventListener("resize",placeInd);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(placeInd);
+  if(LANG==="en")i18nRun(document.body);
+}
+
 /* ---------- events & boot ---------- */
 $("#brand").addEventListener("click",function(){navigate({view:"home"})});
 $("#me").addEventListener("click",function(){
@@ -1398,6 +1724,7 @@ $("#ov").addEventListener("click",function(e){if(e.target===$("#ov"))closeSheet(
 $("#ov").addEventListener("keydown",trap);
 window.addEventListener("hashchange",function(){setRoute(parseHash())});
 
+initUi();
 render();
 $("#install").addEventListener("click",function(){sheetPlatform(null)});
 $("#sync").addEventListener("click",function(){sheetSync()});

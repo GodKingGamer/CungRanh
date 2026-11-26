@@ -16,8 +16,8 @@ src = rep(src, '<meta name="claude:viewport-fit-sides" content="cover">\n', '')
 head = f'''<!doctype html>
 <html lang="vi"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0B7A63" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0F1815" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F5EFE6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171412" media="(prefers-color-scheme: dark)">
 <meta name="author" content="{CREATOR}">
 <meta name="description" content="Những người quá rảnh: tìm ngày rảnh chung cho nhóm bạn.">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -41,12 +41,13 @@ src = rep(src, '  <div id="view"></div>\n</div>',
   <p id="verline">Những người quá rảnh · {version} · Người tạo: {CREATOR}</p></footer>
 </div>
 <div id="toast" class="toast" role="status" hidden><span>Đã có bản mới.</span> <button id="toast-reload" class="btn sm" type="button">Tải lại</button></div>''')
-src = rep(src, '<span class="pill">Bản xem thử</span>', f'<span class="pill">{version.split(" · ")[0]}</span>')
 css = '''
 .ver{margin:28px 0 8px;text-align:center;color:var(--muted);font-size:12px;display:grid;gap:6px;justify-items:center}
 .ver p{margin:0}
-.linkbtn{font:inherit;font-size:13px;font-weight:600;color:var(--free);background:none;border:0;text-decoration:underline;cursor:pointer;padding:6px}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:30;display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);padding:10px 12px 10px 16px;border-radius:12px;font-size:14px}
+.linkbtn{font:inherit;font-size:13px;font-weight:600;color:var(--hi);background:none;border:0;text-decoration:underline;cursor:pointer;padding:6px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:30;display:flex;align-items:center;gap:10px;background:var(--dark);color:var(--dark-ink);padding:10px 12px 10px 16px;border-radius:999px;font-size:14px;box-shadow:var(--shadow);animation:toastin var(--t3) var(--spring)}
+@keyframes toastin{from{opacity:0;transform:translate(-50%,16px) scale(.96)}}
+.toast .btn{background:var(--dark-2);color:var(--dark-ink);border-color:var(--dark-2)}
 '''
 src = rep(src, '</style>', css + '</style>')
 
@@ -130,7 +131,7 @@ self.addEventListener("fetch",e=>{{
 }});
 '''
 (root/"sw.js").write_text(sw, encoding="utf8")
-manifest = {"name":"Những người quá rảnh","short_name":"Quá rảnh","description":"Tìm ngày rảnh chung cho nhóm bạn","lang":"vi","start_url":"./","scope":"./","display":"standalone","orientation":"portrait","theme_color":"#0B7A63","background_color":"#EDF2EE",
+manifest = {"name":"Những người quá rảnh","short_name":"Quá rảnh","description":"Tìm ngày rảnh chung cho nhóm bạn","lang":"vi","start_url":"./","scope":"./","display":"standalone","orientation":"portrait","theme_color":"#F5EFE6","background_color":"#F5EFE6",
  "icons":[{"src":"icons/icon-192.png","sizes":"192x192","type":"image/png"},{"src":"icons/icon-512.png","sizes":"512x512","type":"image/png"},{"src":"icons/icon-512-maskable.png","sizes":"512x512","type":"image/png","purpose":"maskable"}]}
 (root/"manifest.webmanifest").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf8")
 (root/".nojekyll").write_text("")

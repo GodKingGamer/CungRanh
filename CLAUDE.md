@@ -22,6 +22,8 @@ Mã trong app dùng giao diện giống Firestore: doc/collection/onSnapshot/set
 5. Báo người dùng bằng tiếng Việt, ngắn: đã sửa gì, QC, nhắc bấm "Tải lại" trên điện thoại.
 
 ## Lưu ý
+- Giao diện Cozy + Studio (từ Bản 09): thanh trên có nav viên thuốc, nút VI/EN, âm thanh 🔈, nhạc ♪ (tắt sẵn), sáng/tối ☾. Khóa localStorage: `cr:lang`, `cr:snd`, `cr:theme`.
+- Dịch EN không dùng `sample` (không có trên GitHub Pages): từ điển nằm trong `src/app.html` giữa `/*I18N-START*/` và `/*I18N-END*/`. Thêm chữ giao diện mới thì thêm cả cụm EN vào từ điển; chữ chưa có sẽ hiện tiếng Việt khi bấm EN. Tên app không dịch; `data-no-tr` bỏ qua phần tử.
 - Không commit symlink hay node_modules. Chữ hoa/thường trong URL Pages theo tên repo.
 - Firebase: dự án `cung-ranh` (Spark, Firestore asia-southeast1, đăng nhập ẩn danh bật, luật trong `firestore.rules` đã publish). Cấu hình web nằm trong `config.js`. Sửa luật: Firebase Console > Firestore > Rules.
 - Nếu `config.js` là null thì app ở chế độ một máy: lời mời chỉ có tác dụng trên cùng thiết bị.
